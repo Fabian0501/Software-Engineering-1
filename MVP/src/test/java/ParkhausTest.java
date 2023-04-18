@@ -1,13 +1,15 @@
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.*;
 
 public class ParkhausTest {
 
     @Test
     public void ticketZiehenTest(){
         //Arrange
+        Parkhaus Parkhaus = new Parkhaus();
 
         //Act
-        Parkticket actual = ticketZiehen(); // Methode Ticketziehen gibt ein Objekt "Parkticket" zurück
+        Parkticket actual = Parkhaus.ticketZiehen(); // Methode Ticketziehen gibt ein Objekt "Parkticket" zurück
 
         //Assert
         assertEquals(true,actual.ticketWurdeGezogen()); // Parkticket hat ein boolean-Attribut, ob es gezogen wurde
@@ -16,9 +18,12 @@ public class ParkhausTest {
     @Test
     public void schrankeEingangTest(){
         //Arrange
-        Parkticket ticket = new Parkticket();
+        Parkhaus Parkhaus = new Parkhaus();
+        Parkticket ticket = Parkhaus.ticketZiehen();
+
         //Act
-        ticket.schranke(); // Methode schranke() setzt das Attribut "belegt" von Parkticket auf "true" beim Reinfahren
+        Parkhaus.schranke(ticket); // Methode schranke() setzt das Attribut "belegt" von Parkticket auf "true" beim Reinfahren
+
         //Arrange
         assertEquals(true,ticket.getTicketBelegt()); // prüfe das Attribut "belegt" auf "true"
 
@@ -27,30 +32,31 @@ public class ParkhausTest {
     @Test
     void bezahlen(){
         //Arrange
-        Parkticket ticket = new Parkticket();
+        Parkhaus Parkhaus = new Parkhaus();
+        Parkticket ticket = Parkhaus.ticketZiehen();
 
         //Act
-        a.bezahlen(); // Makiert das Ticket als wurde bezahlt
+        Parkhaus.bezahlen(ticket); // Makiert das Ticket als wurde bezahlt(also Attribut bezahlt ist true)
 
         //Assert
-        assertEquals(true,a.getTicketStatus()); // Prüfe,ob das Ticket bezahlt wurde
-
+        assertEquals(true,ticket.getTicketStatus()); // Prüfe,ob das Ticket bezahlt wurde
     }
 
 
     @Test
     public void schrankeAusgangTest(){
         //Arrange
-        Parkticket ticket = new Parkticket();
+        Parkhaus Parkhaus = new Parkhaus();
+        Parkticket ticket = Parkhaus.ticketZiehen();
 
         //Act
-       ticket.schranke(); /* Methode schranke() setzt das Attribut "belegt" von Parkticket auf "false" beim Rausfahren,
+        Parkhaus.schranke(ticket); //bevor man rausfährt, muss man reinfahren.
+        Parkhaus.bezahlen(ticket); //bevor man rausfährt, muss man das Ticket auch bezahlen.
+        Parkhaus.schranke(ticket); /* Methode schranke() setzt das Attribut "belegt" von Parkticket auf "false" beim Rausfahren,
          setze Attribut "belegt" nur auf false, wenn Ticket bezahlt wurde sonst nicht*/
 
         //Arrange
         assertEquals(false,ticket.getTicketBelegt());// prüfe das Attribut "belegt" auf "false"
-
-
     }
 
 
