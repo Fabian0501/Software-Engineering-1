@@ -6,9 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="Parkhaus" />
         <module name="MVP" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Parkhaus" target="20" />
+    </bytecodeTargetLevel>
   </component>
 </project>

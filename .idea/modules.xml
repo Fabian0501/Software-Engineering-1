@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/MVP/MVP-Web/MVP-Web.iml" filepath="$PROJECT_DIR$/MVP/MVP-Web/MVP-Web.iml" />
       <module fileurl="file://$PROJECT_DIR$/Parkhaus.iml" filepath="$PROJECT_DIR$/Parkhaus.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/inf_se1_ss23_Team_17_sose23.iml" filepath="$PROJECT_DIR$/.idea/inf_se1_ss23_Team_17_sose23.iml" />
     </modules>
