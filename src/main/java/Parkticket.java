@@ -1,7 +1,9 @@
-public class Parkticket {
+public class Parkticket  {
     private boolean bezahlt;
     private boolean belegt;
     private boolean gezogen;
+
+    private int id;
     public Parkticket(){
         bezahlt = false;
         belegt = false;     //ticket erst belegt, wenn man reinfährt(ist dann nicht mehr ziehbar)
