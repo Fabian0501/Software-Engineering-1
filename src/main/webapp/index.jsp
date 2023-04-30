@@ -8,11 +8,9 @@
 <body>
 <h1><%= "Willkommen im Parkhaus!" %>
 </h1>
-
 <br/>
-
-
 <%
+    //hier erstelle ich den Parkhasuobjek, so dass ihn jedre acuh nutzen kann: wichitg auf parkhaus Casdtne bei getAttribute()
     ServletContext context = config.getServletContext();
     if(context.getAttribute("parkhaus") == null){
         context.setAttribute("parkhaus", new Parkhaus());
@@ -23,7 +21,6 @@
     <h1><%= "Freie Plätze" %></h1>
     <p><%= plaetze %></p>
 </div>
-
 
 
 <a href="parkhaus-servlet">Einfahren</a>
