@@ -1,8 +1,13 @@
 package Parkhauspackege;
+
+import java.util.Date;
+import java.sql.Timestamp;
+
 public class Parkticket  {
     private boolean bezahlt;
     private boolean belegt;
     private boolean gezogen;
+    private Timestamp timestamp;
 
     private static int id = 1;
     private int meineID;
@@ -17,6 +22,7 @@ public class Parkticket  {
         belegt = false;     //ticket erst belegt, wenn man reinfährt(ist dann nicht mehr ziehbar)
         gezogen = true;     //Ein Ticket wird nur erstellt, wenn es gezogen wird. Also gilt ein Ticket als gezogen, wenn es erstellt wurde.
         meineID = id++;     //aktueller id wert wird angenommen und danach erhöht
+        timestamp = new Timestamp(System.currentTimeMillis());
     }
 
     public boolean getTicketStatus(){
@@ -48,6 +54,15 @@ public class Parkticket  {
     }
     public int getMeineID(){
         return meineID;
+    }
+
+    /**
+     * liefer die Uhrzeit, wo es erstellt wurde
+     * @return
+     */
+    public String getTimeStamp(){
+        Date date  = new Date(timestamp.getTime());
+        return date.getHours() +":" + date.getMinutes() + ":" + date.getSeconds();
     }
 
 

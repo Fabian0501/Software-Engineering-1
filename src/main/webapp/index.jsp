@@ -15,14 +15,16 @@
     if(context.getAttribute("parkhaus") == null){
         context.setAttribute("parkhaus", new Parkhaus());
     }
+
     String plaetze = (String) (((Parkhaus)context.getAttribute("parkhaus")).getVerfügbareParkplätze()+ ""); // caste erst zum Parkhaus, um dann getVerfügbarPlätze auszuführen, dann die ausgabe zu string
 %>
 <div style="display: flex; flex-direction: row;">
-    <h1><%= "Freie Plätze" %></h1>
-    <p><%= plaetze %></p>
+    <p><%= plaetze %> Plätze frei</p>
 </div>
+<br/>
 
-
-<a href="parkhaus-servlet">Einfahren</a>
+<a href="">Einfahren</a>
+<br/>
+<a href="table-servlet"> Tabelle</a>
 </body>
 </html>

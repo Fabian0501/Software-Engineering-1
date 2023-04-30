@@ -1,10 +1,11 @@
 package Parkhauspackege;
 import java.util.HashMap;
+
 public class Parkhaus implements ParkhausIF{
 
     private final int verfügbareParkplätze = 1000;
 
-    HashMap<Integer, Parkticket> parkhaus = new HashMap<>();
+    private HashMap<Integer, Parkticket> speicher = new HashMap<>(); // speichere hier die tickest ab
 
     @Override
     public Parkticket ticketZiehen() throws IllegalStateException {
@@ -13,9 +14,10 @@ public class Parkhaus implements ParkhausIF{
         }
         Parkticket parkticket = new Parkticket();
         this.schranke(parkticket);
-        parkticket.hinzufügen(parkticket); // das gezogene parkticket wird in den array von Parktickets eingefügt
-        parkhaus.put(parkticket.getMeineID(), parkticket); // fügt ein neues Auto ein in das parkhaus
-        return new Parkticket();
+       // parkticket.hinzufügen(parkticket); // das gezogene parkticket wird in den array von Parktickets eingefügt
+        speicher.put(parkticket.getMeineID(), parkticket); // fügt ein neues Auto ein in das parkhaus
+       // return new Parkticket();
+        return parkticket;
     }
     @Override
     public void schranke(Parkticket ticket) {
@@ -29,7 +31,7 @@ public class Parkhaus implements ParkhausIF{
             System.out.println("Schranke öffnet sich zum rausfahren!");
             System.out.println("Schranke schließt sich!");
            // ticket.entfernen(ticket);
-            parkhaus.remove(ticket.getMeineID());
+            speicher.remove(ticket.getMeineID());
 
 
         }
@@ -45,10 +47,19 @@ public class Parkhaus implements ParkhausIF{
 
     public int getBelegtePlätze() {
 
-        return parkhaus.size();
+        return speicher.size();
+    }
+    //
+    /**
+     um eine Kopie von der Hashmap zu bekommen, brauche ich in der Tabelle für Servlet. Ansonsten könnte man das eigentlich Parkhaus unbefugt manipulieren
+     */
+    public HashMap<Integer, Parkticket> getAllTickets(){
+        return new HashMap<>(speicher);
     }
 
     public int getVerfügbareParkplätze() {
         return verfügbareParkplätze - getBelegtePlätze();
     }
+
+
 }
