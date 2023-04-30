@@ -1,5 +1,19 @@
 public class Parkhaus implements ParkhausIF{
 
+    public final int verfügbareParkplätze = 1000;
+    public int belegtePlätze = 0;
+
+    @Override
+    public Parkticket ticketZiehen() throws IllegalStateException {
+        if (getVerfügbareParkplätze() == 0){
+            throw new IllegalStateException();
+        }
+        Parkticket parkticket = new Parkticket();
+        this.schranke(parkticket);
+        parkticket.hinzufügen(parkticket); // das gezogene parkticket wird in den array von Parktickets eingefügt
+        belegtePlätze++;
+        return new Parkticket();
+    }
     @Override
     public void schranke(Parkticket ticket) {
         if(ticket.getTicketBelegt() == false){      //Vor dem Reinfahren und nach dem Ziehen ist das Ticket noch nicht belegt == false
@@ -11,12 +25,9 @@ public class Parkhaus implements ParkhausIF{
             ticket.setBelegtFalse();
             System.out.println("Schranke öffnet sich zum rausfahren!");
             System.out.println("Schranke schließt sich!");
+            belegtePlätze--;
+            ticket.entfernen(ticket);
         }
-    }
-
-    @Override
-    public Parkticket ticketZiehen() {
-        return new Parkticket();
     }
 
     @Override
@@ -27,4 +38,11 @@ public class Parkhaus implements ParkhausIF{
         ticket.setBezahlt();
     }
 
+    public int getBelegtePlätze() {
+        return belegtePlätze;
+    }
+
+    public int getVerfügbareParkplätze() {
+        return verfügbareParkplätze - getBelegtePlätze();
+    }
 }

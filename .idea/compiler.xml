@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="inf_se1_ss23_Team_17_sose23" />
+        <module name="Team_17_sose23" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="MVP" target="19" />
+      <module name="MVP" target="20" />
       <module name="Parkhaus" target="20" />
     </bytecodeTargetLevel>
   </component>
