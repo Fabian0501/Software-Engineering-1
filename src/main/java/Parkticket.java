@@ -45,13 +45,16 @@ public class Parkticket  {
     public int getSize() {
         return size;
     }
+    public int getMeineID(){
+        return meineID;
+    }
+
+
 
     public static int getId() {
         return id;
     }
-    public void sizeErhöhen(){
-        this.size++;
-    }
+
 
     // hinzufügen-methode eigentlich void aber fürs Testen rückgabewert gegeben
     public Parkticket hinzufügen(Parkticket parkticket){
@@ -66,7 +69,7 @@ public class Parkticket  {
         }
         return parkticket;
     }
-    public Parkticket entfernen(Parkticket parkticket){
+    public Parkticket   entfernen(Parkticket parkticket){
         Parkticket entferntesTicket = null;
         for (Parkticket parkticketIndex : parkticketsArray){
             if (parkticketIndex.equals(parkticket)){

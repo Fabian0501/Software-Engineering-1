@@ -1,7 +1,9 @@
+import java.util.HashMap;
 public class Parkhaus implements ParkhausIF{
 
-    public final int verfügbareParkplätze = 1000;
-    public int belegtePlätze = 0;
+    private final int verfügbareParkplätze = 1000;
+
+    HashMap<Integer, Parkticket> parkhaus = new HashMap<>();
 
     @Override
     public Parkticket ticketZiehen() throws IllegalStateException {
@@ -11,7 +13,7 @@ public class Parkhaus implements ParkhausIF{
         Parkticket parkticket = new Parkticket();
         this.schranke(parkticket);
         parkticket.hinzufügen(parkticket); // das gezogene parkticket wird in den array von Parktickets eingefügt
-        belegtePlätze++;
+        parkhaus.put(parkticket.getMeineID(), parkticket); // fügt ein neues Auto ein in das parkhaus
         return new Parkticket();
     }
     @Override
@@ -25,8 +27,10 @@ public class Parkhaus implements ParkhausIF{
             ticket.setBelegtFalse();
             System.out.println("Schranke öffnet sich zum rausfahren!");
             System.out.println("Schranke schließt sich!");
-            belegtePlätze--;
-            ticket.entfernen(ticket);
+           // ticket.entfernen(ticket);
+            parkhaus.remove(ticket.getMeineID());
+
+
         }
     }
 
@@ -39,7 +43,8 @@ public class Parkhaus implements ParkhausIF{
     }
 
     public int getBelegtePlätze() {
-        return belegtePlätze;
+
+        return parkhaus.size();
     }
 
     public int getVerfügbareParkplätze() {
