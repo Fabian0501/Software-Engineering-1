@@ -1,3 +1,4 @@
+package Parkhauspackege;
 public class Parkticket  {
     private boolean bezahlt;
     private boolean belegt;

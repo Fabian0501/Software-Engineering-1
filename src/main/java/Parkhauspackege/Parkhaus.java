@@ -1,3 +1,4 @@
+package Parkhauspackege;
 import java.util.HashMap;
 public class Parkhaus implements ParkhausIF{
 
