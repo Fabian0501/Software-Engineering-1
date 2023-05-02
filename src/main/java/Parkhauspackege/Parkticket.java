@@ -41,13 +41,10 @@ public class Parkticket  {
         bezahlt = true;
     }
 
-    public void setBelegt(){
-        belegt = true;
+    public void setBelegt(boolean x){
+        belegt = x;
     }
 
-    public void setBelegtFalse(){
-        belegt = false;
-    }
 
     public int getSize() {
         return size;

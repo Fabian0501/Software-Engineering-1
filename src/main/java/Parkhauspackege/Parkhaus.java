@@ -24,10 +24,10 @@ public class Parkhaus implements ParkhausIF{
         if(ticket.getTicketBelegt() == false){      //Vor dem Reinfahren und nach dem Ziehen ist das Ticket noch nicht belegt == false
             System.out.println("Schranke öffnet sich zum reinfahren!");
             System.out.println("Schranke schließt sich!");
-            ticket.setBelegt();
+            ticket.setBelegt(true);
         }
         if(ticket.getTicketStatus() == true){       //wenn bezahlt ist, kann man rausfahren und das Ticket wird nicht mehr belegt sein
-            ticket.setBelegtFalse();
+            ticket.setBelegt(false);
             System.out.println("Schranke öffnet sich zum rausfahren!");
             System.out.println("Schranke schließt sich!");
            // ticket.entfernen(ticket);
