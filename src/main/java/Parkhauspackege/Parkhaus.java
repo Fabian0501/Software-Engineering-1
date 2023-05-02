@@ -32,8 +32,6 @@ public class Parkhaus implements ParkhausIF{
             System.out.println("Schranke schließt sich!");
            // ticket.entfernen(ticket);
             speicher.remove(ticket.getMeineID());
-
-
         }
     }
 

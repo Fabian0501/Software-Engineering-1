@@ -9,6 +9,13 @@
 <h1><%= "Willkommen im Parkhaus!" %>
 </h1>
 <br/>
+
+
+<form action="ticketZiehen" method="get">
+    <button type="submit">Ticket ziehen</button>
+</form>
+
+
 <%
     //hier erstelle ich den Parkhasuobjek, so dass ihn jedre acuh nutzen kann: wichitg auf parkhaus Casdtne bei getAttribute()
     ServletContext context = config.getServletContext();
@@ -23,8 +30,7 @@
     <p><%= plaetze %> Plätze frei</p>
 </div>
 <br/>
-
-<a href="">Einfahren</a>
+<a href="table-servlet"> parkhaus </a>
 <br/>
 <a href="table-servlet"> Tabelle</a>
 <br>

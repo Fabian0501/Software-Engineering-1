@@ -49,7 +49,5 @@ public class KasseServlet extends HttpServlet {
        out.println("<a href=\"" + request.getContextPath() + "/index.jsp\">Zurück zur Startseite</a>");
        out.println("<html><body>");
 
-
-
     }
 }

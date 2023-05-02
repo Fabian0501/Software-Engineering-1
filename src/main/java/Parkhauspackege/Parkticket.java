@@ -71,13 +71,9 @@ public class Parkticket  {
 
     // hinzufügen-methode eigentlich void aber fürs Testen rückgabewert gegeben
     public Parkticket hinzufügen(Parkticket parkticket){
-        if (getSize() < 1000){
-            parkticketsArray[size] = parkticket;
-        }else {
-            for (Parkticket parkticketIndex : parkticketsArray){
-                if (parkticketIndex == null){
-                    parkticketIndex = parkticket;
-                }
+        for (Parkticket parkticketIndex : parkticketsArray){
+            if (parkticketIndex == null){
+                parkticketIndex = parkticket;
             }
         }
         return parkticket;
@@ -90,6 +86,7 @@ public class Parkticket  {
                 parkticketIndex = null;
             }
         }
+        size--;
         return entferntesTicket;
     }
 }
