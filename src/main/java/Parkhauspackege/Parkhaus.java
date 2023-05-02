@@ -7,6 +7,8 @@ public class Parkhaus implements ParkhausIF{
 
     private HashMap<Integer, Parkticket> speicher = new HashMap<>(); // speichere hier die tickest ab
 
+    private final double preisProStunde = 1.50;
+
     @Override
     public Parkticket ticketZiehen() throws IllegalStateException {
         if (getVerfügbareParkplätze() == 0){
@@ -44,7 +46,6 @@ public class Parkhaus implements ParkhausIF{
     }
 
     public int getBelegtePlätze() {
-
         return speicher.size();
     }
     //
@@ -60,5 +61,7 @@ public class Parkhaus implements ParkhausIF{
         return verfügbareParkplätze - getBelegtePlätze();
     }
 
-
+    public double getPreisProStunde() {
+        return preisProStunde;
+    }
 }

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 @WebServlet(name = "ticket", value = "/ticketZiehen")
 public class TicketZiehenServlet extends HttpServlet {
@@ -18,10 +19,16 @@ public class TicketZiehenServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-
         Parkhaus parkhaus = (Parkhaus) getServletContext().getAttribute("parkhaus");
-        parkhaus.ticketZiehen();
+        Parkticket parkticket = parkhaus.ticketZiehen();
+
+        req.setAttribute("ticket", parkticket);
+
+        PrintWriter out = resp.getWriter();
+        out.println("<html><body>");
+        out.println("<h3>" + "Willkomen in unserem Parkhaus!" + "</h3>");
+        out.println("<h3> deine Ticket-ID ist: " + parkticket.getMeineID() + "</h3>");
+        out.println("</body></html>");
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("index.jsp");
         dispatcher.forward(req,resp);

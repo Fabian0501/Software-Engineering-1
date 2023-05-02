@@ -1,5 +1,6 @@
 package Parkhauspackege;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,8 +18,13 @@ public class KasseServlet extends HttpServlet {
         parkhaus = (Parkhaus) getServletContext().getAttribute("parkhaus");
     }
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException{
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 
+
+        if (parkhaus.getBelegtePlätze() == 0){
+            RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+            dispatcher.forward(request,response);
+        }
 
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
@@ -39,15 +45,16 @@ public class KasseServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("TicketID"));
         Parkticket ticket = parkhaus.getAllTickets().get(id);
         //Parkticket ticket = ;
-        parkhaus.bezahlen(ticket);
+
         String timestmp=ticket.getTimeStamp();
        PrintWriter out = response.getWriter();
        out.println("<html><body>");
        out.println("TicketID"+id+"<br><br");
        out.println("Einfahrtzeit: "+timestmp+"<br><br>");
-       out.println("Preis:");
+       out.println("Preis:" + parkhaus.getPreisProStunde());
        out.println("<a href=\"" + request.getContextPath() + "/index.jsp\">Zurück zur Startseite</a>");
        out.println("<html><body>");
+       parkhaus.bezahlen(ticket);
 
     }
 }
