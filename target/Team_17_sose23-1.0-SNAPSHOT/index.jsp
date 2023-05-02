@@ -14,6 +14,7 @@
     ServletContext context = config.getServletContext();
     if(context.getAttribute("parkhaus") == null){
         context.setAttribute("parkhaus", new Parkhaus());
+        context.setAttribute("TicketID",null);
     }
 
     String plaetze = (String) (((Parkhaus)context.getAttribute("parkhaus")).getVerfügbareParkplätze()+ ""); // caste erst zum Parkhaus, um dann getVerfügbarPlätze auszuführen, dann die ausgabe zu string
@@ -26,5 +27,8 @@
 <a href="">Einfahren</a>
 <br/>
 <a href="table-servlet"> Tabelle</a>
+<br>
+<a href="Kasse-Servlet">Kassenautomat</a>
+<br/>
 </body>
 </html>

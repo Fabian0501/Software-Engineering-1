@@ -57,6 +57,7 @@ public class Parkhaus implements ParkhausIF{
         return new HashMap<>(speicher);
     }
 
+
     public int getVerfügbareParkplätze() {
         return verfügbareParkplätze - getBelegtePlätze();
     }
