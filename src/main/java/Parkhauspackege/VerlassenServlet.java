@@ -9,23 +9,26 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "ticket", value = "/ticketZiehen")
-public class TicketZiehenServlet extends HttpServlet {
+@WebServlet(name = "leave" ,value = "/Parkhaus-Verlassen")
+public class VerlassenServlet extends HttpServlet {
+
+    Parkhaus parkhaus = null;
 
     @Override
     public void init() throws ServletException {
-        super.init();
+        parkhaus = (Parkhaus) getServletContext().getAttribute("parkhaus");
     }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Parkhaus parkhaus = (Parkhaus) getServletContext().getAttribute("parkhaus");
-        Parkticket parkticket = parkhaus.ticketZiehen();
 
-//        req.getServletContext().setAttribute("ticket" + parkticket.getMeineID(), parkticket);
-        req.getServletContext().setAttribute("ticket", parkticket);
 
-        RequestDispatcher dispatcher = req.getRequestDispatcher("index.jsp");
-        dispatcher.forward(req,resp);
+        if (parkhaus.getBelegtePlätze() == 0){
+            RequestDispatcher dispatcher = req.getRequestDispatcher("index.jsp");
+            dispatcher.forward(req,resp);
+        }
+
+        super.doGet(req, resp);
     }
 
     @Override
