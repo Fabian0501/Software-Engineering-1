@@ -58,7 +58,13 @@
     <form action="Parkhaus-Verlassen" method="get">
         <button type="submit"> Ausfahren </button>
     </form>
+    <br>
+    <form action="table-servlet" method="get">
+        <button type="submit"> Tabelle </button>
+    </form>
 </div>
+
+
 
 
 <%--<br/>--%>

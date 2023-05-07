@@ -39,9 +39,15 @@ public class ParkhausServlet extends HttpServlet  {
         out.println("</table>");
 
 
+        out.println("<a href=\"" + request.getContextPath() + "/index.jsp\">Zurück zum Parkhaus!</a>");
+
     }
     public void doPost( HttpServletRequest request, HttpServletResponse response) throws IOException{
 
     }
     public void init() {}
+
+    @Override
+    public void destroy() {
+    }
 }
