@@ -7,7 +7,7 @@
     <title>JSP - Hello World</title>
     <style>
         button {
-            background-color: #bbdeff;
+            background-color: #cbcb7f;
             font-size: 16px;
             padding: 10px 20px;
         }

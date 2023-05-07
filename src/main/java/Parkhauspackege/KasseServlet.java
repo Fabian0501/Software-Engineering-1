@@ -45,14 +45,13 @@ public class KasseServlet extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("TicketID"));
         Parkticket ticket = parkhaus.getAllTickets().get(id);
         //Parkticket ticket = ;
-
         String timestmp=ticket.getTimeStamp();
        PrintWriter out = response.getWriter();
        out.println("<html><body>");
-       out.println("TicketID"+id+"<br><br");
+       out.println("TicketID: "+id+"<br><br>");
        out.println("Einfahrtzeit: "+timestmp+"<br><br>");
-       out.println("Preis:" + parkhaus.getPreisProStunde());
-       out.println("<a href=\"" + request.getContextPath() + "/index.jsp\">Zurück zur Startseite</a>");
+       out.println("Preis: " + parkhaus.getPreisProStunde() +" Euro pro Stunde!<br><br>");
+       out.println("<a href=\"" + request.getContextPath() + "/index.jsp\">Zurück zum Parkhaus!</a>");
        out.println("<html><body>");
        parkhaus.bezahlen(ticket);
 
