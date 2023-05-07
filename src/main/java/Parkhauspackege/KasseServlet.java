@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Timestamp;
+import java.util.Date;
 
 @WebServlet(name = "Kasse",value = "/Kasse-Servlet")
 public class KasseServlet extends HttpServlet {
@@ -42,18 +43,32 @@ public class KasseServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest request,HttpServletResponse response) throws IOException{
         response.setContentType("text/html");
+
         int id = Integer.parseInt(request.getParameter("TicketID"));
         Parkticket ticket = parkhaus.getAllTickets().get(id);
-        //Parkticket ticket = ;
         String timestmp=ticket.getTimeStamp();
-       PrintWriter out = response.getWriter();
+        Timestamp current = new Timestamp(System.currentTimeMillis());
+        Date now  = new Date(current.getTime());
+        String ausfahrtszeit =  now.getHours() +":" + now.getMinutes() + ":" + now.getSeconds();
+        double endpreis = ticket.calculateTicket(parkhaus.getPreisProStunde());
+        String parkdauer = ticket.calculateParkdauer();
+
+
+        PrintWriter out = response.getWriter();
        out.println("<html><body>");
        out.println("TicketID: "+id+"<br><br>");
        out.println("Einfahrtzeit: "+timestmp+"<br><br>");
-       out.println("Preis: " + parkhaus.getPreisProStunde() +" Euro pro Stunde!<br><br>");
+       out.println("Ausfahrtszeit: "+ausfahrtszeit+"<br><br>");
+       out.println("Parkdauer: "+parkdauer+"<br><br>");
+       out.println("Preis: " + endpreis +" Euro"+"<br><br>");
        out.println("<a href=\"" + request.getContextPath() + "/index.jsp\">Zurück zum Parkhaus!</a>");
        out.println("<html><body>");
        parkhaus.bezahlen(ticket);
+
+    }
+
+
+    public void destroy() {
 
     }
 }

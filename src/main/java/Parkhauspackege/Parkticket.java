@@ -62,6 +62,52 @@ public class Parkticket  {
         return date.getHours() +":" + date.getMinutes() + ":" + date.getSeconds();
     }
 
+    public double getTimeInSec(){
+        Date date = new Date(timestamp.getTime());
+        double seconds = date.getHours()*3600+date.getMinutes()*60+date.getSeconds();
+        return seconds;
+    }
+
+    public double calculateTicket(double preis){
+        Timestamp current = new Timestamp(System.currentTimeMillis());
+        Date now  = new Date(current.getTime());
+        double curentTime= now.getHours()*3600+now.getMinutes()*60+now.getSeconds();
+        double stampTime = getTimeInSec();
+        double diff = curentTime-stampTime;
+        double endpreis = 0;
+        while (diff>3600){
+            endpreis+=preis;
+            diff-=3600;
+        }
+        endpreis+=preis;
+        return endpreis;
+    }
+
+    public String calculateParkdauer(){
+        Timestamp current = new Timestamp(System.currentTimeMillis());
+        Date now  = new Date(current.getTime());
+        double curentTime= now.getHours()*3600+now.getMinutes()*60+now.getSeconds();
+        double stampTime = getTimeInSec();
+        double diff = curentTime-stampTime;
+        double dauer = 0;
+        if(diff>=3600){
+        while (diff>=3600){
+            dauer+=1.0;
+            diff-=3600;
+        }
+            dauer+=diff/3600;
+            return dauer+"h";
+        }
+        if(diff>=60){
+            while (diff>=60){
+                dauer+=1.0;
+                diff-=60;
+            }
+            return dauer+"min";
+        }
+        return diff + "s";
+    }
+
 
 
     public static int getId() {
