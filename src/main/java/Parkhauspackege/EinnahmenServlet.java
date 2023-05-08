@@ -19,7 +19,7 @@ public class EinnahmenServlet extends HttpServlet  {
         out.println("<tr>");
         out.println("<th>ID</th>");
         out.println("<th>Uhrzeit</th>");
-        out.println("<th>Preis (in Euro)</th>");
+        out.println("<th>gezahlt (in Euro)</th>");
         out.println("</tr>");
         for(Map.Entry<Integer, Parkticket> entry : parkhaus.getAllUsedTickets().entrySet()){
             out.println("<tr>");
