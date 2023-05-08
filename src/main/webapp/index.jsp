@@ -62,7 +62,12 @@
     <form action="table-servlet" method="get">
         <button type="submit"> Tabelle </button>
     </form>
+    <br>
+    <form action="Einnahmen-Servlet" method="get">
+        <button type="submit"> Einnahmen </button>
+    </form>
 </div>
+
 
 
 

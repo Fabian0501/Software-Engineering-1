@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Map;
 
 @WebServlet(name = "ticket", value = "/ticketZiehen")
 public class TicketZiehenServlet extends HttpServlet {
@@ -23,6 +24,7 @@ public class TicketZiehenServlet extends HttpServlet {
 
 //        req.getServletContext().setAttribute("ticket" + parkticket.getMeineID(), parkticket);
         req.getServletContext().setAttribute("ticket", parkticket);
+        PrintWriter out = resp.getWriter();
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("index.jsp");
         dispatcher.forward(req,resp);
@@ -37,4 +39,5 @@ public class TicketZiehenServlet extends HttpServlet {
     public void destroy() {
         super.destroy();
     }
+
 }

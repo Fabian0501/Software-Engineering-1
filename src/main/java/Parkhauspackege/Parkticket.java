@@ -11,6 +11,7 @@ public class Parkticket  {
 
     private static int id = 1;
     private int meineID;
+    private double Preis = 0;   //Preis, der in der Einnahmetabelle angezeigt wird.
 
     // TODO: Bitte in array list umwandeln und entfern-methode anpassen
     private Parkticket[] parkticketsArray = new Parkticket[1000];
@@ -134,5 +135,12 @@ public class Parkticket  {
         }
         size--;
         return entferntesTicket;
+    }
+
+    public void setPreis(double Preis){
+        this.Preis = Preis;
+    }
+    public double getPreis(){
+        return Preis;
     }
 }

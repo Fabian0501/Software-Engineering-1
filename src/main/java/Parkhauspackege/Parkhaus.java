@@ -6,7 +6,7 @@ public class Parkhaus implements ParkhausIF{
     private final int verfügbareParkplätze = 1000;
 
     private HashMap<Integer, Parkticket> speicher = new HashMap<>(); // speichere hier die tickest ab
-
+    private HashMap<Integer, Parkticket> SpeicherRausgefahren = new HashMap<>();  //Hier werden die rausgefahrenen Autos vermekt um eine Einnahmeliste zu bilden
     private final double preisProStunde = 1.50;
 
     @Override
@@ -32,6 +32,8 @@ public class Parkhaus implements ParkhausIF{
             ticket.setBelegt(false);
             System.out.println("Schranke öffnet sich zum rausfahren!");
             System.out.println("Schranke schließt sich!");
+            //Füge vor dem Entfernen das Ticket in den Rausgefahren-Speicher hinzu
+            SpeicherRausgefahren.put(ticket.getMeineID(), ticket);
            // ticket.entfernen(ticket);
             speicher.remove(ticket.getMeineID());
         }
@@ -54,6 +56,10 @@ public class Parkhaus implements ParkhausIF{
      */
     public HashMap<Integer, Parkticket> getAllTickets(){
         return new HashMap<>(speicher);
+    }
+
+    public HashMap<Integer, Parkticket> getAllUsedTickets(){
+        return new HashMap<>(SpeicherRausgefahren);
     }
 
 

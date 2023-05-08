@@ -51,6 +51,7 @@ public class KasseServlet extends HttpServlet {
         Date now  = new Date(current.getTime());
         String ausfahrtszeit =  now.getHours() +":" + now.getMinutes() + ":" + now.getSeconds();
         double endpreis = ticket.calculateTicket(parkhaus.getPreisProStunde());
+        ticket.setPreis(endpreis);    //Setze Preis des Tickets
         String parkdauer = ticket.calculateParkdauer();
 
 
