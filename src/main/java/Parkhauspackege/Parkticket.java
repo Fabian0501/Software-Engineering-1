@@ -11,6 +11,7 @@ public class Parkticket  {
 
     private static int id = 1;
     private int meineID;
+    private double Preis = 0;   //Preis, der in der Einnahmetabelle angezeigt wird.
 
     // TODO: Bitte in array list umwandeln und entfern-methode anpassen
     private Parkticket[] parkticketsArray = new Parkticket[1000];
@@ -41,13 +42,10 @@ public class Parkticket  {
         bezahlt = true;
     }
 
-    public void setBelegt(){
-        belegt = true;
+    public void setBelegt(boolean x){
+        belegt = x;
     }
 
-    public void setBelegtFalse(){
-        belegt = false;
-    }
 
     public int getSize() {
         return size;
@@ -65,6 +63,52 @@ public class Parkticket  {
         return date.getHours() +":" + date.getMinutes() + ":" + date.getSeconds();
     }
 
+    public double getTimeInSec(){
+        Date date = new Date(timestamp.getTime());
+        double seconds = date.getHours()*3600+date.getMinutes()*60+date.getSeconds();
+        return seconds;
+    }
+
+    public double calculateTicket(double preis){
+        Timestamp current = new Timestamp(System.currentTimeMillis());
+        Date now  = new Date(current.getTime());
+        double curentTime= now.getHours()*3600+now.getMinutes()*60+now.getSeconds();
+        double stampTime = getTimeInSec();
+        double diff = curentTime-stampTime;
+        double endpreis = 0;
+        while (diff>3600){
+            endpreis+=preis;
+            diff-=3600;
+        }
+        endpreis+=preis;
+        return endpreis;
+    }
+
+    public String calculateParkdauer(){
+        Timestamp current = new Timestamp(System.currentTimeMillis());
+        Date now  = new Date(current.getTime());
+        double curentTime= now.getHours()*3600+now.getMinutes()*60+now.getSeconds();
+        double stampTime = getTimeInSec();
+        double diff = curentTime-stampTime;
+        double dauer = 0;
+        if(diff>=3600){
+        while (diff>=3600){
+            dauer+=1.0;
+            diff-=3600;
+        }
+            dauer+=diff/3600;
+            return dauer+"h";
+        }
+        if(diff>=60){
+            while (diff>=60){
+                dauer+=1.0;
+                diff-=60;
+            }
+            return dauer+"min";
+        }
+        return diff + "s";
+    }
+
 
 
     public static int getId() {
@@ -74,13 +118,9 @@ public class Parkticket  {
 
     // hinzufügen-methode eigentlich void aber fürs Testen rückgabewert gegeben
     public Parkticket hinzufügen(Parkticket parkticket){
-        if (getSize() < 1000){
-            parkticketsArray[size] = parkticket;
-        }else {
-            for (Parkticket parkticketIndex : parkticketsArray){
-                if (parkticketIndex == null){
-                    parkticketIndex = parkticket;
-                }
+        for (Parkticket parkticketIndex : parkticketsArray){
+            if (parkticketIndex == null){
+                parkticketIndex = parkticket;
             }
         }
         return parkticket;
@@ -93,6 +133,14 @@ public class Parkticket  {
                 parkticketIndex = null;
             }
         }
+        size--;
         return entferntesTicket;
+    }
+
+    public void setPreis(double Preis){
+        this.Preis = Preis;
+    }
+    public double getPreis(){
+        return Preis;
     }
 }
