@@ -35,11 +35,11 @@ public class VerlassenServlet extends HttpServlet {
         resp.setContentType("text/html");
         PrintWriter out = resp.getWriter();
         out.println("<html><body>");
-        out.println("<h3>Bitte geben Sie ihre Ticket-ID ein!HALLOO<h3>");
+        out.println("<h3>Bitte geben Sie ihre Ticket-ID ein!<h3>");
         out.println("<form method=\"post\">");
         out.println("<label for=\"TicketID\"> TicketID:</label>");
         out.println("<input type=\"TicketID\" id=\"TicketID\" name=\"TicketID\"><br>");
-        out.println("<input type=\"submit\"value=\"Bezahlen!\"");
+        out.println("<input type=\"submit\"value=\"Rausfahren!\"");
         out.println("</html></body");
 
 

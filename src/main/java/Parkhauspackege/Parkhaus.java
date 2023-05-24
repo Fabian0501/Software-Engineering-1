@@ -7,6 +7,7 @@ public class Parkhaus implements ParkhausIF{
 
     private HashMap<Integer, Parkticket> speicher = new HashMap<>(); // speichere hier die tickest ab
     private HashMap<Integer, Parkticket> SpeicherRausgefahren = new HashMap<>();  //Hier werden die rausgefahrenen Autos vermekt um eine Einnahmeliste zu bilden
+    private HashMap<String, String> Zeiten = new HashMap<>();
     private final double preisProStunde = 1.50;
 
     @Override

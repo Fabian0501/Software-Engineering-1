@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
 Created-By: IntelliJ IDEA
-Built-By: moate
-Build-Jdk: Oracle OpenJDK version 20
+Built-By: moataz
+Build-Jdk: Oracle OpenJDK version 20.0.1
 
