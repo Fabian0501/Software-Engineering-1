@@ -40,7 +40,7 @@ public class EinnahmenServlet extends HttpServlet  {
 
         resp.setContentType("text/html");
         out.println("<html><body>");
-        out.println("<h3>Öffnungszeiten festlegen:<h3>");
+        out.println("<h3>Öffnungszeiten festlegen: <h3>");
         out.println("<form method=\"post\">");
         out.println("<label for=\"TicketID\"> Von:</label>");
         out.println("<input type=\"Zeit\" id=\"Zeitvon\" name=\"Zeitvon\"><br>");
