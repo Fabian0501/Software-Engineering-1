@@ -64,7 +64,7 @@
     </form>
     <br>
     <form action="Einnahmen-Servlet" method="get">
-        <button type="submit"> Einnahmen </button>
+        <button type="submit"> Betreiber </button>
     </form>
 </div>
 
