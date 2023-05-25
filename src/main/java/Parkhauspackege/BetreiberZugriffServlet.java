@@ -15,7 +15,6 @@ import java.io.PrintWriter;
 public class BetreiberZugriffServlet extends HttpServlet {
     private static final String password = "password";
     private static int accessAttempt = 0;
-    private static String inputString = "";
 
 
     @Override
@@ -41,22 +40,24 @@ public class BetreiberZugriffServlet extends HttpServlet {
         PrintWriter out = resp.getWriter();
 
         //eingabe des users
-        inputString = req.getParameter("password");
+        String inputString = req.getParameter("password");
 
         //out.println(inputString); //prüfen ob der eingegebene wert wirklich gespeichert wurde
 
         //dispatcher
-        RequestDispatcher dispatcherBetreiber = req.getRequestDispatcher("betreiber.jsp");
+        RequestDispatcher dispatcherBetreiber = req.getRequestDispatcher("Betreiber.jsp");
         RequestDispatcher dispatcherIndex = req.getRequestDispatcher("index.jsp");
 
         //Verhalten
         if (accessAttempt < 2){ //beschränkung der login versuche ist noch nicht erreicht
             if (inputString.equals(password)){ //eingabe entspricht password
                 dispatcherBetreiber.forward(req,resp); //weiterleitung zum ziel jsp
+                return;
             }
             else { //eingabe entspricht nicht dem password
                 accessAttempt++; //anzahl der zugriffsversuche wird um eins erhöht
                 dispatcherIndex.forward(req,resp); //user wird auf die startseite geschickt
+                return;
             }
         }
         //maximale zugriffsversuche wurden überschritten ==> user wird auf die startseite geschickt
