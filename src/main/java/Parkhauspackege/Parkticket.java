@@ -1,10 +1,14 @@
 package Parkhauspackege;
 
+import java.text.DecimalFormat;
 import java.util.Date;
 import java.sql.Timestamp;
 
 public class Parkticket  {
+    private static String[] arten= {"Normales Ticket", "Normales Ticket + Ladestaion", "Monatskarte"}; // damit ich nicht sändig neue
     private boolean bezahlt;
+
+    private int ticketart; // damit kann ich auf den array "arten" zugraifen
     private boolean belegt;
     private boolean gezogen;
     private Timestamp timestamp;
@@ -46,6 +50,19 @@ public class Parkticket  {
         belegt = x;
     }
 
+    /**
+     *
+     * @param i
+     * i = 0 für Normales Ticket
+     * i = 1 für Normales Ticket + Ladestaion
+     * i = 2 für Monatliches Ticket
+     */
+    public void setTicketart(int  i){
+        ticketart = i;
+    }
+    public String getTicketart(){
+        return arten[ticketart];
+    }
 
     public int getSize() {
         return size;
@@ -81,6 +98,13 @@ public class Parkticket  {
             diff-=3600;
         }
         endpreis+=preis;
+
+        if(getTicketart().equals("Normales Ticket + Ladestaion")){ //der zusatzbetrag wird hier mit einem fixen wert berechent
+            endpreis *= 1.2;
+        }
+        DecimalFormat decimalFormat = new DecimalFormat("#.##");
+        endpreis = Double.parseDouble(decimalFormat.format(endpreis).replace(",","."));// hier werdne nur zwei stellen nach dme komma betrachtet,
+                                                                                                        //tasche "," mit "." aus, da double kein komma kennt
         return endpreis;
     }
 

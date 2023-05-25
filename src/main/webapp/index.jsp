@@ -49,7 +49,7 @@
 </div>
 <br>
 <div style="text-align: center;">
-    <form action="ticketZiehen" method="get">
+    <form action="TicketArten.jsp" method="get">
         <button type="submit"> Einfahren  </button>
     </form>
 </div>

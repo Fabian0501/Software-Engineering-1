@@ -18,22 +18,30 @@ public class TicketZiehenServlet extends HttpServlet {
         super.init();
     }
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Parkhaus parkhaus = (Parkhaus) getServletContext().getAttribute("parkhaus");
         Parkticket parkticket = parkhaus.ticketZiehen();
 
+        //hier stelle ich fest, welche art tickrs es ist, damit man damit später was anfagnen kann
+        if(request.getParameter("Button2") != null){ //Normales Ticket + Ladestationberechtigung
+            parkticket.setTicketart(1);
+        }else if(request.getParameter("Button3") != null){ //Monatsticket
+            parkticket.setTicketart(2);
+            //hier kommt noch code // dürfen nicht aud tabelle entfernet werden
+        }else{
+            parkticket.setTicketart(0);
+        }
+        //für ein Normales Ticket muss man nicht weiter tun
+
 //        req.getServletContext().setAttribute("ticket" + parkticket.getMeineID(), parkticket);
-        req.getServletContext().setAttribute("ticket", parkticket);
-        PrintWriter out = resp.getWriter();
+        request.getServletContext().setAttribute("ticket", parkticket);
+        PrintWriter out = response.getWriter();
 
-        RequestDispatcher dispatcher = req.getRequestDispatcher("index.jsp");
-        dispatcher.forward(req,resp);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+        dispatcher.forward(request,response);
     }
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
-    }
+
 
     @Override
     public void destroy() {

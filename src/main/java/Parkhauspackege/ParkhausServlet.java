@@ -27,6 +27,7 @@ public class ParkhausServlet extends HttpServlet  {
         out.println("<tr>");
         out.println("<th>ID</th>");
         out.println("<th>Uhrzeit</th>");
+        out.println("<th>Ticketart</th>");
         out.println("</tr>");
         for(Map.Entry<Integer, Parkticket> entry : parkhaus.getAllTickets().entrySet()){
             //gebe hier die ID und
@@ -34,6 +35,7 @@ public class ParkhausServlet extends HttpServlet  {
             out.println("<tr>");
             out.println("<td>" + entry.getKey()+ "</td>");
             out.println("<td>" + entry.getValue().getTimeStamp() + "</td>");
+            out.print("<td>" + entry.getValue().getTicketart() + "</td>");
             out.println("</tr>");
         }
         out.println("</table>");
