@@ -33,6 +33,10 @@ public class SetTicketPreisServlet extends HttpServlet {
         out.println("<br>");
         out.println("<input type=\"submit\" value=\"bestätigen\"");
         out.println("</form></body></html>");
+        out.println("<br>");
+        out.println("<br>");
+        out.println("<br>");
+        out.println("<a href=\"" + req.getContextPath() + "/Betreiber.jsp\">Zurück zur Betreiber Startseite</a>");
     }
 
     @Override
@@ -44,19 +48,10 @@ public class SetTicketPreisServlet extends HttpServlet {
 
         if (newTicketPreis >= 0){
             parkhaus.setPreisProStunde(newTicketPreis);
-            out.println("<br>");
-            out.println("<h3> Der Preis pro Stunde wurde erfolgreich auf " + newTicketPreis + " gesetzt </h3>");
+            out.println("<h3> Der Preis pro Stunde wurde erfolgreich auf " + newTicketPreis + " gesetzt");
         }
-
         out.println("<br>");
         out.println("<br>");
-        out.println("<br>");
-        out.println("Diese seiten könnten sie als nächtes besuchen");
-        out.println("<br>");
-        out.println("<br>");
-        out.println("<a href=\" " + req.getContextPath() + " /index.jsp\"> Zurück zum parkhaus Startseite </a> ");
-        out.println("<br>");
-        out.println("<br>");
-        out.println("<a href=\" " + req.getContextPath() + " /Betreiber.jsp\"> Zurück zur Betreiber Startseite </a> ");
+        out.println("<a href=\"" + req.getContextPath() + "/Betreiber.jsp\">Zurück zur Betreiber Startseite</a>");
     }
 }
