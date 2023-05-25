@@ -17,7 +17,6 @@
             left: 20px;
         }
     </style>
-
 </head>
 <body>
 
@@ -45,7 +44,7 @@
 </div>
 <div style="display: flex; flex-direction: column; align-items: center;">
     <h2> Freie Plätze: <%= plaetze %> </h2>
-    <h2> Preis pro Stunde: <%= ticketpreis + "€" %> </h2>
+    <h2> Preis pro Stunde: <%= ticketpreis + " Euro" %> </h2>
 </div>
 <br>
 <div style="text-align: center;">
