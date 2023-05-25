@@ -48,14 +48,18 @@ public class EinnahmenServlet extends HttpServlet  {
         out.println("<input type=\"Zeit\" id=\"Zeitbis\" name=\"Zeitbis\"><br>");
         out.println("<input type=\"submit\"value=\"setzen!\"<br>");
         out.println("</html></body");
+        out.println();
 
 
-        out.println("<a href=\"" + req.getContextPath() + "/index.jsp\">Zurück zum Parkhaus!</a>");
 
+
+//        out.println("<a href=\"" + req.getContextPath() + "/index.jsp\">Zurück zum Parkhaus!</a>");
+        out.println("<br>");
+        out.println("<a href=\"" + req.getContextPath() + "/index.jsp\">Zurück zur Parkhaus Startseite</a>");
     }
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
+
     }
 
 }

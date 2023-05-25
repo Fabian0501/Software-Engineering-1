@@ -7,11 +7,17 @@
     <title>JSP - Hello World</title>
     <style>
         button {
-            background-color: #cbcb7f;
+            background-color: #7fb0cb;
             font-size: 16px;
             padding: 10px 20px;
         }
+        .login-button{
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+        }
     </style>
+
 </head>
 <body>
 
@@ -24,6 +30,7 @@
     }
 
     String plaetze = (String) (((Parkhaus)context.getAttribute("parkhaus")).getVerfügbareParkplätze()+ ""); // caste erst zum Parkhaus, um dann getVerfügbarPlätze auszuführen, dann die ausgabe zu string
+    String ticketpreis = (String) (((Parkhaus) context.getAttribute("parkhaus")).getPreisProStunde() + "");
 %>
 
 <% int id = 0;
@@ -38,6 +45,7 @@
 </div>
 <div style="display: flex; flex-direction: column; align-items: center;">
     <h2> Freie Plätze: <%= plaetze %> </h2>
+    <h2> Preis pro Stunde: <%= ticketpreis + "€" %> </h2>
 </div>
 <br>
 <div style="text-align: center;">
@@ -62,13 +70,9 @@
     <form action="table-servlet" method="get">
         <button type="submit"> Tabelle </button>
     </form>
-    <br>
-    <form action="Einnahmen-Servlet" method="get">
-        <button type="submit"> Betreiber </button>
-    </form>
 </div>
 
-
+<a href="betreiberZugriff" class="login-button">Login</a>
 
 
 
