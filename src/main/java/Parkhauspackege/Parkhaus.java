@@ -8,8 +8,8 @@ public class Parkhaus implements ParkhausIF{
     private HashMap<Integer, Parkticket> speicher = new HashMap<>(); // speichere hier die tickest ab
     private HashMap<Integer, Parkticket> SpeicherRausgefahren = new HashMap<>();  //Hier werden die rausgefahrenen Autos vermekt um eine Einnahmeliste zu bilden
     private HashMap<String, String> Zeiten = new HashMap<>();
-    private double preisProStunde = 1.50;
-
+    private double[] ticketpreise = {1.50,4.00,50.0};
+    //Normal,Mit Ladestation(als Zusatz addieren) NICHT der Preis pro Stunde,Monat
     @Override
     public Parkticket ticketZiehen() throws IllegalStateException {
         if (getVerfügbareParkplätze() == 0){
@@ -68,11 +68,11 @@ public class Parkhaus implements ParkhausIF{
         return verfügbareParkplätze - getBelegtePlätze();
     }
 
-    public double getPreisProStunde() {
-        return preisProStunde;
+    public double[] getTicketPreis() {
+        return ticketpreise;
     }
 
-    protected void setPreisProStunde(double preisProStunde){
-        this.preisProStunde = preisProStunde;
+    protected void setTicketpreise(int  i,double preis){
+        ticketpreise[i] = preis; //i ist die Ticketart
     }
 }

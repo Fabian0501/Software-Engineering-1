@@ -19,16 +19,16 @@
 
 <div style="text-align: center;">
     <form action="ticketZiehen" method="post">
-        <input type="submit" name="Button1" value="Normales Ticket">   <%-- damit kann ich in  Ticketziehen unterscheiden
+        <input type="submit" name="Button1" value="Normales-Ticket">   <%-- damit kann ich in  Ticketziehen unterscheiden
                                                                              welche art von ticket es ist--%>
     </form>
     <br>
     <form action="ticketZiehen" method="post">
-        <input type="submit" name="Button2" value="nomales Ticket + ladestaion ">
+        <input type="submit" name="Button2" value="Normales-Ticket + Ladestation">
     </form>
     <br>
     <form action="ticketZiehen" method="post">
-        <input type="submit" name="Button3" value="MonatsTicket">
+        <input type="submit" name="Button3" value="Monats-Ticket">
     </form>
 
 

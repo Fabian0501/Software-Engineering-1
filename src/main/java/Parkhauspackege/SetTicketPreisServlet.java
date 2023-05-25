@@ -11,12 +11,12 @@ import java.io.PrintWriter;
 @WebServlet(name = "SetTicket", value = "/setTicketPreis")
 public class SetTicketPreisServlet extends HttpServlet {
     Parkhaus parkhaus = null;
-    double aktuellerPreisProStunde;
+    double[] aktuellerPreise;
 
     @Override
     public void init() throws ServletException {
         parkhaus = (Parkhaus) getServletContext().getAttribute("parkhaus");
-        aktuellerPreisProStunde = parkhaus.getPreisProStunde();
+       aktuellerPreise = parkhaus.getTicketPreis();
     }
 
     @Override
@@ -25,7 +25,7 @@ public class SetTicketPreisServlet extends HttpServlet {
         PrintWriter out = resp.getWriter();
 
         // eingabefeld für Ticketpreis
-        out.println("<h3>Möchten sie den aktuellen Preis pro Stunde von " + aktuellerPreisProStunde + " ändern ? <h3>");
+        out.println("<h3>Möchten sie den aktuellen Preis pro Stunde von " + aktuellerPreise + " ändern ? <h3>");
         out.println();
         out.println("<form method=\"post\">");
         out.println("<label for=\"stundenPreis\">Neuer stundenPreis :  </label>");
@@ -47,7 +47,7 @@ public class SetTicketPreisServlet extends HttpServlet {
         double newTicketPreis = Double.parseDouble(req.getParameter("stundenPreis"));
 
         if (newTicketPreis >= 0){
-            parkhaus.setPreisProStunde(newTicketPreis);
+           // parkhaus.setPreisProStunde(newTicketPreis);
             out.println("<h3> Der Preis pro Stunde wurde erfolgreich auf " + newTicketPreis + " gesetzt");
         }
         out.println("<br>");

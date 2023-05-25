@@ -25,13 +25,19 @@ public class TicketZiehenServlet extends HttpServlet {
         //hier stelle ich fest, welche art tickrs es ist, damit man damit später was anfagnen kann
         if(request.getParameter("Button2") != null){ //Normales Ticket + Ladestationberechtigung
             parkticket.setTicketart(1);
+            parkticket.setPreis(parkhaus.getTicketPreis()[1]);//Setzt den Preis für Normales Ticket+Ladestation
+
         }else if(request.getParameter("Button3") != null){ //Monatsticket
             parkticket.setTicketart(2);
-            //hier kommt noch code // dürfen nicht aud tabelle entfernet werden
+            parkticket.setPreis(parkhaus.getTicketPreis()[2]); //Setzt den Preis für Monatsticket
+
+            // dürfen nicht aud tabelle entfernet werden
         }else{
             parkticket.setTicketart(0);
-        }
-        //für ein Normales Ticket muss man nicht weiter tun
+            parkticket.setPreis(parkhaus.getTicketPreis()[0]); //Setzt den Preis für normales Ticket
+        } //für ein Normales Ticket muss man nicht weiter tun
+
+
 
 //        req.getServletContext().setAttribute("ticket" + parkticket.getMeineID(), parkticket);
         request.getServletContext().setAttribute("ticket", parkticket);

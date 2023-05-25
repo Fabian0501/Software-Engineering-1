@@ -5,7 +5,7 @@ import java.util.Date;
 import java.sql.Timestamp;
 
 public class Parkticket  {
-    private static String[] arten= {"Normales Ticket", "Normales Ticket + Ladestaion", "Monatskarte"}; // damit ich nicht sändig neue
+    private static String[] arten= {"Normales Ticket","Normales Ticket + Ladestation","MonatsTicket"}; // damit ich nicht sändig neue
     private boolean bezahlt;
 
     private int ticketart; // damit kann ich auf den array "arten" zugraifen
@@ -71,6 +71,7 @@ public class Parkticket  {
         return meineID;
     }
 
+
     /**
      * liefer die Uhrzeit, wo es erstellt wurde
      * @return
@@ -99,7 +100,7 @@ public class Parkticket  {
         }
         endpreis+=preis;
 
-        if(getTicketart().equals("Normales Ticket + Ladestaion")){ //der zusatzbetrag wird hier mit einem fixen wert berechent
+        if(getTicketart().equals("Normales Ticket + Ladestation")){ //der zusatzbetrag wird hier mit einem fixen wert berechent
             endpreis *= 1.2;
         }
         DecimalFormat decimalFormat = new DecimalFormat("#.##");
@@ -120,6 +121,39 @@ public class Parkticket  {
             dauer+=1.0;
             diff-=3600;
         }
+            dauer+=diff/3600;
+            return dauer+"h";
+        }
+        if(diff>=60){
+            while (diff>=60){
+                dauer+=1.0;
+                diff-=60;
+            }
+            return dauer+"min";
+        }
+        return diff + "s";
+    }
+
+    public String timeLeft(){
+        Timestamp current = new Timestamp(System.currentTimeMillis());
+        Date now  = new Date(current.getTime());
+        double curentTime= now.getHours()*3600+now.getMinutes()*60+now.getSeconds();
+        double stampTime = getTimeInSec();
+        double diff = 2592000-curentTime-stampTime;
+        double dauer = 0;
+
+        if(diff>=86400){
+            while ((diff>=86400)){
+                dauer+=1.0;
+                diff-=86400;
+            }
+            return dauer+"d";
+        }
+        if(diff>=3600){
+            while (diff>=3600){
+                dauer+=1.0;
+                diff-=3600;
+            }
             dauer+=diff/3600;
             return dauer+"h";
         }

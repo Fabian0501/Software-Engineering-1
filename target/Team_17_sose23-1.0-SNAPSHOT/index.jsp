@@ -29,7 +29,9 @@
     }
 
     String plaetze = (String) (((Parkhaus)context.getAttribute("parkhaus")).getVerfügbareParkplätze()+ ""); // caste erst zum Parkhaus, um dann getVerfügbarPlätze auszuführen, dann die ausgabe zu string
-    String ticketpreis = (String) (((Parkhaus) context.getAttribute("parkhaus")).getPreisProStunde() + "");
+    String nticket = (String) (((Parkhaus) context.getAttribute("parkhaus")).getTicketPreis()[0] + "");
+    String nticketl = (String) (((Parkhaus) context.getAttribute("parkhaus")).getTicketPreis()[1] + "");
+    String mticket = (String) (((Parkhaus) context.getAttribute("parkhaus")).getTicketPreis()[2] + "");
 %>
 
 <% int id = 0;
@@ -44,7 +46,9 @@
 </div>
 <div style="display: flex; flex-direction: column; align-items: center;">
     <h2> Freie Plätze: <%= plaetze %> </h2>
-    <h2> Preis pro Stunde: <%= ticketpreis + " Euro" %> </h2>
+    <h2> Normales Ticket: <%= nticket + " Euro pro Stunde" %> </h2>
+    <h2> Normales Ticket + Ladestation: <%= "Normalpreis + " + nticketl +" Euro Ladegebühr" %> </h2>
+    <h2> Monatsticket: <%= mticket + " Euro" %> </h2>
 </div>
 <br>
 <div style="text-align: center;">
