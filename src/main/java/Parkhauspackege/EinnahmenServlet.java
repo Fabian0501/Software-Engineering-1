@@ -53,9 +53,9 @@ public class EinnahmenServlet extends HttpServlet  {
 
 
 
-//        out.println("<a href=\"" + req.getContextPath() + "/index.jsp\">Zurück zum Parkhaus!</a>");
         out.println("<br>");
-        out.println("<a href=\"" + req.getContextPath() + "/index.jsp\">Zurück zur Parkhaus Startseite</a>");
+        out.println("<br>");
+        out.println("<a href=\"" + req.getContextPath() + "/Betreiber.jsp\">Zurück zur Betreiber Startseite</a>");
     }
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
