@@ -14,7 +14,7 @@
         .login-button {
             position: fixed;
             bottom: 20px;
-            left: 20px;
+            right: 20px;
         }
         .ticketpreise {
             position: absolute;
@@ -72,6 +72,8 @@
     <form action="TicketArten.jsp" method="get">
         <button type="submit">Einfahren</button>
     </form>
+
+
 </div>
     <br>
     <div style="text-align: center;">
@@ -83,3 +85,6 @@
         <button type="submit">Ausfahren</button>
     </form>
 </div>
+    <a href="betreiberZugriff" class="login-button">Login</a>
+</body>
+</html>
