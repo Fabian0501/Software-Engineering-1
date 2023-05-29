@@ -134,38 +134,7 @@ public class Parkticket  {
         return diff + "s";
     }
 
-    public String timeLeft(){
-        Timestamp current = new Timestamp(System.currentTimeMillis());
-        Date now  = new Date(current.getTime());
-        double curentTime= now.getHours()*3600+now.getMinutes()*60+now.getSeconds();
-        double stampTime = getTimeInSec();
-        double diff = 2592000-curentTime-stampTime;
-        double dauer = 0;
 
-        if(diff>=86400){
-            while ((diff>=86400)){
-                dauer+=1.0;
-                diff-=86400;
-            }
-            return dauer+"d";
-        }
-        if(diff>=3600){
-            while (diff>=3600){
-                dauer+=1.0;
-                diff-=3600;
-            }
-            dauer+=diff/3600;
-            return dauer+"h";
-        }
-        if(diff>=60){
-            while (diff>=60){
-                dauer+=1.0;
-                diff-=60;
-            }
-            return dauer+"min";
-        }
-        return diff + "s";
-    }
 
 
 

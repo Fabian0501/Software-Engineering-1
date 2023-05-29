@@ -62,7 +62,6 @@ public class KasseServlet extends HttpServlet {
             if(ticket.getTicketart().equals("Normales Ticket + Ladestation")){
                 endpreis+=parkhaus.getTicketPreis()[1]; //Addiert Gebühr für die Ladestation auf den Endpreis
             }
-
         }else{
             endpreis=parkhaus.getTicketPreis()[2];
             parkdauer = ticket.calculateParkdauer();
@@ -77,9 +76,6 @@ public class KasseServlet extends HttpServlet {
         out.println("Parkdauer: " + parkdauer + "<br><br>");
         out.println("Preis: " + endpreis + " Euro" + "<br><br>");
         out.println("<a href=\"" + request.getContextPath() + "/index.jsp\">Zurück zum Parkhaus!</a>");
-        if(ticket.getTicketart().equals("MonatsTicket")){
-        out.println("Ihr Ticket ist noch "+ ticket.timeLeft()+ " gültig!");
-        }
         out.println("<html><body>");
         parkhaus.bezahlen(ticket);
     }
