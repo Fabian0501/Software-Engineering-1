@@ -22,7 +22,7 @@
             background-color: #7fb0cb; /* Hintergrundfarbe des Buttons */
             color: #000000; /* Textfarbe des Buttons */
             font-size: 16px; /* Schriftgröße des Buttons */
-            border: 2px solid black; /* Schwarzer Rahmen um den Button */
+            border: 2px solid black;  /* button-container um buttons horizontal anzuordnen. */
             outline: none; /* Entfernt den blauen Rahmen um den Button */
         }
         .button-container {
@@ -68,10 +68,18 @@
 <br>
 <br>
 <br>
-<div style="text-align: center;">
-    <form action="Einnahmen-Servlet" method="get">
-        <button type="submit"> Einnahmen ansehen</button>
-    </form>
+<div class="button-container">
+    <div class="button-div">
+        <form action="Einnahmen-Servlet" method="get">
+            <button type="submit"> Einnahmen</button>
+        </form>
+    </div>
+    <div class="button-div">
+        <form action="Oeffnungszeiten-Servlet" method="post">
+            <button type="submit"> Öffnungszeiten festlegen</button>
+        </form>
+    </div>
+</div>
     <br>
     <form action="index.jsp">
         <button type="submit"> Parkhaus Startseite</button>

@@ -37,22 +37,6 @@ public class EinnahmenServlet extends HttpServlet  {
         }
         out.println(summe + " Euro");
         out.println("<br>");
-
-        resp.setContentType("text/html");
-        out.println("<html><body>");
-        out.println("<h3>Öffnungszeiten festlegen: <h3>");
-        out.println("<form method=\"post\">");
-        out.println("<label for=\"TicketID\"> Von:</label>");
-        out.println("<input type=\"Zeit\" id=\"Zeitvon\" name=\"Zeitvon\"><br>");
-        out.println("<label for=\"Zeitvon\"> Bis:</label>");
-        out.println("<input type=\"Zeit\" id=\"Zeitbis\" name=\"Zeitbis\"><br>");
-        out.println("<input type=\"submit\"value=\"setzen!\"<br>");
-        out.println("</html></body");
-        out.println();
-
-
-
-
         out.println("<br>");
         out.println("<br>");
         out.println("<a href=\"" + req.getContextPath() + "/Betreiber.jsp\">Zurück zur Betreiber Startseite</a>");
