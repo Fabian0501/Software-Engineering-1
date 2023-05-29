@@ -85,6 +85,12 @@ public class Parkhaus implements ParkhausIF{
     }
 
     protected void setTicketpreise(int  i,double preis){
+        if (0 > i || i > 2){
+            throw new IndexOutOfBoundsException();
+        }
+        if (preis < 0){
+            throw new IllegalArgumentException();
+        }
         ticketpreise[i] = preis; //i ist die Ticketart
     }
 
