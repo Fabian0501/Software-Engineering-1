@@ -36,7 +36,7 @@ public class SetTicketPreisServlet extends HttpServlet {
         out.println("<br>");
         out.println("<br>");
         out.println("<br>");
-        out.println("<a href=\"" + req.getContextPath() + "/Betreiber.jsp\">Zurück zur Betreiber Startseite</a>");
+//      out.println("<a href=\"" + req.getContextPath() + "/Betreiber.jsp\">Zurück zur Betreiber Startseite</a>");
     }
 
     @Override

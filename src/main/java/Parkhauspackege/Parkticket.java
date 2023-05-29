@@ -5,10 +5,10 @@ import java.util.Date;
 import java.sql.Timestamp;
 
 public class Parkticket  {
-    private static String[] arten= {"Normales Ticket","Normales Ticket + Ladestation","MonatsTicket"}; // damit ich nicht sändig neue
+    private static final String[] arten= {"Normales Ticket","Normales Ticket + Ladestation","MonatsTicket"}; // damit ich nicht sändig neue
     private boolean bezahlt;
 
-    private int ticketart; // damit kann ich auf den array "arten" zugraifen
+    private int ticketart; // damit kann ich auf den array "arten" zugreifen
     private boolean belegt;
     private boolean gezogen;
     private Timestamp timestamp;
@@ -24,7 +24,7 @@ public class Parkticket  {
 
     public Parkticket(){
         bezahlt = false;
-        belegt = false;     //ticket erst belegt, wenn man reinfährt(ist dann nicht mehr ziehbar)
+        belegt = false;     //ticket erst belegt, wenn man reinfährt (ist dann nicht mehr zieh bar)
         gezogen = true;     //Ein Ticket wird nur erstellt, wenn es gezogen wird. Also gilt ein Ticket als gezogen, wenn es erstellt wurde.
         meineID = id++;     //aktueller id wert wird angenommen und danach erhöht
         timestamp = new Timestamp(System.currentTimeMillis());

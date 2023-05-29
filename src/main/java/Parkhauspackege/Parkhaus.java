@@ -3,7 +3,7 @@ import java.util.HashMap;
 
 public class Parkhaus implements ParkhausIF{
 
-    private final int verfügbareParkplätze = 1000;
+    private int verfügbareParkplätze = 1000;
 
     private HashMap<Integer, Parkticket> speicher = new HashMap<>(); // speichere hier die tickest ab
     private HashMap<Integer, Parkticket> SpeicherRausgefahren = new HashMap<>();  //Hier werden die rausgefahrenen Autos vermekt um eine Einnahmeliste zu bilden
@@ -17,7 +17,7 @@ public class Parkhaus implements ParkhausIF{
         }
         Parkticket parkticket = new Parkticket();
         this.schranke(parkticket);
-       // parkticket.hinzufügen(parkticket); // das gezogene parkticket wird in den array von Parktickets eingefügt
+       // parkticket.hinzufügen(parkticket); // das gezogene parkticket wird in den array von Parktickets eingefüg
         speicher.put(parkticket.getMeineID(), parkticket); // fügt ein neues Auto ein in das parkhaus
        // return new Parkticket();
         return parkticket;
@@ -30,13 +30,22 @@ public class Parkhaus implements ParkhausIF{
             ticket.setBelegt(true);
         }
         if(ticket.getTicketStatus() == true){       //wenn bezahlt ist, kann man rausfahren und das Ticket wird nicht mehr belegt sein
-            ticket.setBelegt(false);
+
+            if(ticket.getTicketart().equals("Normales Ticket")||ticket.getTicketart().equals("Normales Ticket + Ladestation")){
+                ticket.setBelegt(false);
+
+                //Füge vor dem Entfernen das Ticket in den Rausgefahren-Speicher hinzu
+                SpeicherRausgefahren.put(ticket.getMeineID(), ticket);
+                // ticket.entfernen(ticket);
+                speicher.remove(ticket.getMeineID());
+            }
+            else { //ticket ist ein monatsticket
+                if(ticket.timeLeft()){
+                    speicher.remove(ticket.getMeineID());
+                }
+            }
             System.out.println("Schranke öffnet sich zum rausfahren!");
             System.out.println("Schranke schließt sich!");
-            //Füge vor dem Entfernen das Ticket in den Rausgefahren-Speicher hinzu
-            SpeicherRausgefahren.put(ticket.getMeineID(), ticket);
-           // ticket.entfernen(ticket);
-            speicher.remove(ticket.getMeineID());
         }
     }
 
@@ -50,6 +59,9 @@ public class Parkhaus implements ParkhausIF{
 
     public int getBelegtePlätze() {
         return speicher.size();
+    }
+    protected void erhöheBelegtePlätze(){
+        verfügbareParkplätze--;
     }
     //
     /**
@@ -75,4 +87,5 @@ public class Parkhaus implements ParkhausIF{
     protected void setTicketpreise(int  i,double preis){
         ticketpreise[i] = preis; //i ist die Ticketart
     }
+
 }

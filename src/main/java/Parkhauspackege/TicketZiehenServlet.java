@@ -20,23 +20,43 @@ public class TicketZiehenServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Parkhaus parkhaus = (Parkhaus) getServletContext().getAttribute("parkhaus");
-        Parkticket parkticket = parkhaus.ticketZiehen();
+        PrintWriter out = response.getWriter();
+
+        if (request.getParameter("TicketID") != null) {
+            int x = Integer.parseInt(request.getParameter("TicketID"));
+            Parkticket ticket = parkhaus.getAllTickets().get(x);
+
+            if (ticket.getTicketart().equals("MonatsTicket") && !ticket.getTicketStatus()) { //jemand mit monatsticket betritt das parkhaus
+               doPost(request,response);
+            }
+        }
+
+
+
 
         //hier stelle ich fest, welche art tickrs es ist, damit man damit später was anfagnen kann
         if(request.getParameter("Button2") != null){ //Normales Ticket + Ladestationberechtigung
+            Parkticket parkticket = parkhaus.ticketZiehen();
             parkticket.setTicketart(1);
             parkticket.setPreis(parkhaus.getTicketPreis()[1]);//Setzt den Preis für Normales Ticket+Ladestation
-
+            request.getServletContext().setAttribute("ticket", parkticket);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+            dispatcher.forward(request,response);
         }else if(request.getParameter("Button3") != null){ //Monatsticket
+            Parkticket parkticket = parkhaus.ticketZiehen();
             parkticket.setTicketart(2);
             parkticket.setPreis(parkhaus.getTicketPreis()[2]); //Setzt den Preis für Monatsticket
             request.getServletContext().setAttribute("ticket", parkticket);
             RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
             dispatcher.forward(request,response);
             // dürfen nicht aud tabelle entfernet werden
-        }else{
+        }else if (request.getParameter("Button1") != null){
+            Parkticket parkticket = parkhaus.ticketZiehen();
             parkticket.setTicketart(0);
             parkticket.setPreis(parkhaus.getTicketPreis()[0]); //Setzt den Preis für normales Ticket
+            request.getServletContext().setAttribute("ticket", parkticket);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+            dispatcher.forward(request,response);
         } //für ein Normales Ticket muss man nicht weiter tun
 
 
