@@ -31,10 +31,9 @@ public class SetTicketPreisServlet extends HttpServlet {
         if (req.getParameter("Button2") != null){
             out.println("<h3>Möchten sie den aktuellen Preis pro Stunde von " + aktuellerPreise[1] + " ändern ? <h3>");
         }
-        else{
+        if (req.getParameter("Button3") != null){//muss if() bleiben, ansonsten spring er hier rein, nach dem er in eine der ersten beiden abfragen hineingegangen ist
             out.println("<h3>Möchten sie den aktuellen Preis pro Stunde von " + aktuellerPreise[2] + " ändern ? <h3>");
         }
-
 
         // eingabefeld für Ticketpreis
         out.println();
@@ -57,7 +56,6 @@ public class SetTicketPreisServlet extends HttpServlet {
 
         double newTicketPreis = Double.parseDouble(req.getParameter("stundenPreis"));
 
-        //Button eins wurde gedrückt, somit soll der normale ticketpreis geändert werden
         if (newTicketPreis >= 0){
 
             if (req.getParameter("Button1") != null){
@@ -65,17 +63,16 @@ public class SetTicketPreisServlet extends HttpServlet {
             }
             if (req.getParameter("Button2") != null){
                 parkhaus.setTicketpreise(1,newTicketPreis);            }
-            else{
+            if (req.getParameter("Button3") != null){ //muss aich eine if anweisung sein, sonst springt er nach einem der ersten beiden abfragen auch hier rein und ändern somit 2 preise auf einmal
                 parkhaus.setTicketpreise(2,newTicketPreis);
             }
 
-
+            //Feedback an den user, dass die änderungen erfolgreich war
             out.println("<h3> Der Preis pro Stunde wurde erfolgreich auf " + newTicketPreis + " gesetzt");
             out.println("<br>");
             out.println("<br>");
 
         }
-           // parkhaus.setPreisProStunde(newTicketPreis);
 
         out.println("<a href=\"" + req.getContextPath() + "/Betreiber.jsp\">Zurück zur Betreiber Startseite</a>");
     }
