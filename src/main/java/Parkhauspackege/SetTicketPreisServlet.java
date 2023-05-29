@@ -24,8 +24,19 @@ public class SetTicketPreisServlet extends HttpServlet {
         resp.setContentType("text/html");
         PrintWriter out = resp.getWriter();
 
+        //die ausgaben auf den bildschirm zeigen die jeweiligen Preise für das ausgewählte ticket an
+        if (req.getParameter("Button1") != null){
+            out.println("<h3>Möchten sie den aktuellen Preis pro Stunde von " + aktuellerPreise[0] + " ändern ? <h3>");
+        }
+        if (req.getParameter("Button2") != null){
+            out.println("<h3>Möchten sie den aktuellen Preis pro Stunde von " + aktuellerPreise[1] + " ändern ? <h3>");
+        }
+        else{
+            out.println("<h3>Möchten sie den aktuellen Preis pro Stunde von " + aktuellerPreise[2] + " ändern ? <h3>");
+        }
+
+
         // eingabefeld für Ticketpreis
-        out.println("<h3>Möchten sie den aktuellen Preis pro Stunde von " + aktuellerPreise + " ändern ? <h3>");
         out.println();
         out.println("<form method=\"post\">");
         out.println("<label for=\"stundenPreis\">Neuer stundenPreis :  </label>");
@@ -46,12 +57,26 @@ public class SetTicketPreisServlet extends HttpServlet {
 
         double newTicketPreis = Double.parseDouble(req.getParameter("stundenPreis"));
 
+        //Button eins wurde gedrückt, somit soll der normale ticketpreis geändert werden
         if (newTicketPreis >= 0){
-           // parkhaus.setPreisProStunde(newTicketPreis);
+
+            if (req.getParameter("Button1") != null){
+                parkhaus.setTicketpreise(0,newTicketPreis);
+            }
+            if (req.getParameter("Button2") != null){
+                parkhaus.setTicketpreise(1,newTicketPreis);            }
+            else{
+                parkhaus.setTicketpreise(2,newTicketPreis);
+            }
+
+
             out.println("<h3> Der Preis pro Stunde wurde erfolgreich auf " + newTicketPreis + " gesetzt");
+            out.println("<br>");
+            out.println("<br>");
+
         }
-        out.println("<br>");
-        out.println("<br>");
+           // parkhaus.setPreisProStunde(newTicketPreis);
+
         out.println("<a href=\"" + req.getContextPath() + "/Betreiber.jsp\">Zurück zur Betreiber Startseite</a>");
     }
 }
