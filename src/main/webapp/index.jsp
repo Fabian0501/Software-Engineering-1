@@ -4,91 +4,82 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>JSP - Hello World</title>
+    <title>JSP - Parkhaus</title>
     <style>
         button {
             background-color: #7fb0cb;
             font-size: 16px;
             padding: 10px 20px;
         }
-        .login-button{
+        .login-button {
             position: fixed;
             bottom: 20px;
             left: 20px;
+        }
+        .ticketpreise {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background-color: #f2f2f2;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .ticket-prices h2 {
+            margin-top: 0;
+            margin-bottom: 10px;
         }
     </style>
 </head>
 <body>
 
-<%
-    //hier erstelle ich den Parkhasuobjek, so dass ihn jedre acuh nutzen kann: wichitg auf parkhaus Casdtne bei getAttribute()
+    <%
     ServletContext context = config.getServletContext();
-    if(context.getAttribute("parkhaus") == null){
+    if (context.getAttribute("parkhaus") == null) {
         context.setAttribute("parkhaus", new Parkhaus());
-        context.setAttribute("TicketID",null);
     }
 
-    String plaetze = (String) (((Parkhaus)context.getAttribute("parkhaus")).getVerfügbareParkplätze()+ ""); // caste erst zum Parkhaus, um dann getVerfügbarPlätze auszuführen, dann die ausgabe zu string
-    String nticket = (String) (((Parkhaus) context.getAttribute("parkhaus")).getTicketPreis()[0] + "");
-    String nticketl = (String) (((Parkhaus) context.getAttribute("parkhaus")).getTicketPreis()[1] + "");
-    String mticket = (String) (((Parkhaus) context.getAttribute("parkhaus")).getTicketPreis()[2] + "");
-%>
+    Parkhaus parkhaus = (Parkhaus) context.getAttribute("parkhaus");
+    int verfügbarePlätze = parkhaus.getVerfügbareParkplätze();
+    double normalesTicketPreis = parkhaus.getTicketPreis()[0];
+    double ladestationPreis = parkhaus.getTicketPreis()[1];
+    double monatsTicketPreis = parkhaus.getTicketPreis()[2];
 
-<% int id = 0;
-    if (  (int)((Parkhaus)config.getServletContext().getAttribute("parkhaus")).getBelegtePlätze() > 0){
-//
-        id = (int) ((Parkticket)config.getServletContext().getAttribute("ticket")).getMeineID();
-}
+    int ticketID = 0;
+    if (parkhaus.getBelegtePlätze() > 0) {
+        ticketID = ((Parkticket) context.getAttribute("ticket")).getMeineID();
+    }
 %>
 
 <div style="display: flex; justify-content: center;">
     <h1><%= "Willkommen im Parkhaus!" %></h1>
 </div>
+<div class="ticketpreise">
+    <h2>Ticketpreise</h2>
+    <p>Normales Ticket: <%= normalesTicketPreis %> Euro pro Stunde</p>
+    <p>Normales Ticket + Ladestation: Normalpreis + <%= ladestationPreis %> Euro Ladegebühr</p>
+    <p>Monatsticket: <%= monatsTicketPreis %> Euro</p>
+</div>
+
 <div style="display: flex; flex-direction: column; align-items: center;">
-    <h2> Freie Plätze: <%= plaetze %> </h2>
-    <h2> Normales Ticket: <%= nticket + " Euro pro Stunde" %> </h2>
-    <h2> Normales Ticket + Ladestation: <%= "Normalpreis + " + nticketl +" Euro Ladegebühr" %> </h2>
-    <h2> Monatsticket: <%= mticket + " Euro" %> </h2>
+    <h2>Freie Plätze: <%= verfügbarePlätze %></h2>
 </div>
 <br>
+    <div style="display: flex; flex-direction: column; align-items: center;">
+        <h3>Ihre Ticket-ID: <%= ticketID %></h3>
+    </div>
+    <br>
 <div style="text-align: center;">
     <form action="TicketArten.jsp" method="get">
-        <button type="submit"> Einfahren  </button>
+        <button type="submit">Einfahren</button>
     </form>
 </div>
-
-<div style="display: flex; flex-direction: column; align-items: center;">
-    <h3> Ihre Ticket-ID: <%= id %> </h3>
-</div>
-
-<div style="text-align: center;">
+    <br>
+    <div style="text-align: center;">
     <form action="Kasse-Servlet" method="get">
-        <button type="submit"> Bezahlen </button>
+        <button type="submit">Bezahlen</button>
     </form>
     <br>
     <form action="Parkhaus-Verlassen" method="get">
-        <button type="submit"> Ausfahren </button>
-    </form>
-    <br>
-    <form action="table-servlet" method="get">
-        <button type="submit"> Tabelle </button>
+        <button type="submit">Ausfahren</button>
     </form>
 </div>
-
-
-<a href="betreiberZugriff" class="login-button">Login</a>
-
-
-<%--<br/>--%>
-<%--<a href="table-servlet"> parkhaus </a>--%>
-<%--<br/>--%>
-<%--<a href="table-servlet"> Tabelle</a>--%>
-<%--<br>--%>
-<%--<a href="Kasse-Servlet">Kassenautomat</a>--%>
-<%--<br>--%>
-<%--<a href="Parkhaus-Verlassen"> Parkhaus verlassen</a>--%>
-<%--<br/>--%>
-
-
-</body>
-</html>

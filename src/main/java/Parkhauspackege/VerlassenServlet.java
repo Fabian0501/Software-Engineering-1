@@ -58,14 +58,18 @@ public class VerlassenServlet extends HttpServlet {
 
 
         if (context.getAttribute("TicketID") != null){
-            int ticket = Integer.parseInt(req.getParameter("TicketID"));
+            int ticketNummer = Integer.parseInt(req.getParameter("TicketID"));
+
+
             HashMap <Integer, Parkticket> allTickets = parkhaus.getAllTickets();
+            Parkticket parkticket = allTickets.get(ticketNummer);
 
-            if (allTickets.containsKey(ticket) && allTickets.get(ticket).getTicketStatus()){
-                parkhaus.schranke(allTickets.get(ticket));
+            if (allTickets.containsKey(ticketNummer) && allTickets.get(ticketNummer).getTicketStatus()){
+                parkhaus.schranke(allTickets.get(ticketNummer)); //löscht auch das Ticket
 
-                resp.getWriter().println("<h1>Auf Wiedersehen</h1>");
-                resp.getWriter().println("<a href=\"" + req.getContextPath() + "/index.jsp\">Zurück zum Parkhaus!</a>");
+                    resp.getWriter().println("<h1>Auf Wiedersehen</h1>");
+                    resp.getWriter().println("<a href=\"" + req.getContextPath() + "/index.jsp\">Zurück zum Parkhaus!</a>");
+
             }
             else {
                 //Fixme => zur tabelle servlet aka Parkhaus weitergeleitet werden

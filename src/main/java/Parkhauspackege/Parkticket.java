@@ -134,6 +134,14 @@ public class Parkticket  {
         return diff + "s";
     }
 
+    public boolean timeLeft(){
+        Timestamp current =  new Timestamp(System.currentTimeMillis());
+        Date now = new Date(current.getTime());
+        double currentTime = now.getHours()*3600+now.getMinutes()*60+now.getSeconds();
+        double stampTime = getTimeInSec();
+        return 2592000<(currentTime-stampTime);
+    }
+
 
 
 

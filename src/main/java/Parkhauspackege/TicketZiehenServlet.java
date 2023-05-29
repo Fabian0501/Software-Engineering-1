@@ -18,7 +18,7 @@ public class TicketZiehenServlet extends HttpServlet {
         super.init();
     }
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Parkhaus parkhaus = (Parkhaus) getServletContext().getAttribute("parkhaus");
         Parkticket parkticket = parkhaus.ticketZiehen();
 
@@ -30,7 +30,9 @@ public class TicketZiehenServlet extends HttpServlet {
         }else if(request.getParameter("Button3") != null){ //Monatsticket
             parkticket.setTicketart(2);
             parkticket.setPreis(parkhaus.getTicketPreis()[2]); //Setzt den Preis für Monatsticket
-
+            request.getServletContext().setAttribute("ticket", parkticket);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+            dispatcher.forward(request,response);
             // dürfen nicht aud tabelle entfernet werden
         }else{
             parkticket.setTicketart(0);
@@ -38,15 +40,14 @@ public class TicketZiehenServlet extends HttpServlet {
         } //für ein Normales Ticket muss man nicht weiter tun
 
 
-
-//        req.getServletContext().setAttribute("ticket" + parkticket.getMeineID(), parkticket);
-        request.getServletContext().setAttribute("ticket", parkticket);
-        PrintWriter out = response.getWriter();
-
-        RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
-        dispatcher.forward(request,response);
     }
 
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        PrintWriter out = response.getWriter();
+        out.println("<h1> Ihre eingegebene ID ist falsch. Bitte überprüfen Sie Ihre Ticket-ID. </h1>");
+        out.println("<a href=\"index.jsp\">Zurück zum Parkhaus!</a>");
+        out.close();
+    }
 
 
     @Override
