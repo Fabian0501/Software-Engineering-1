@@ -38,21 +38,26 @@ public class TicketZiehenServlet extends HttpServlet {
         if(request.getParameter("Button2") != null){ //Normales Ticket + Ladestationberechtigung
             Parkticket parkticket = parkhaus.ticketZiehen();
             parkticket.setTicketart(1);
+            parkticket.setTimestamp(parkhaus.getParkhausUhr());
             parkticket.setPreis(parkhaus.getTicketPreis()[1]);//Setzt den Preis für Normales Ticket+Ladestation
             request.getServletContext().setAttribute("ticket", parkticket);
             RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
             dispatcher.forward(request,response);
+
         }else if(request.getParameter("Button3") != null){ //Monatsticket
             Parkticket parkticket = parkhaus.ticketZiehen();
             parkticket.setTicketart(2);
+            parkticket.setTimestamp(parkhaus.getParkhausUhr());
             parkticket.setPreis(parkhaus.getTicketPreis()[2]); //Setzt den Preis für Monatsticket
             request.getServletContext().setAttribute("ticket", parkticket);
             RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
             dispatcher.forward(request,response);
             // dürfen nicht aud tabelle entfernet werden
+
         }else if (request.getParameter("Button1") != null){
             Parkticket parkticket = parkhaus.ticketZiehen();
             parkticket.setTicketart(0);
+            parkticket.setTimestamp(parkhaus.getParkhausUhr());
             parkticket.setPreis(parkhaus.getTicketPreis()[0]); //Setzt den Preis für normales Ticket
             request.getServletContext().setAttribute("ticket", parkticket);
             RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");

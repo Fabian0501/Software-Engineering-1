@@ -50,6 +50,10 @@ public class Parkticket  {
         belegt = x;
     }
 
+    public void setTimestamp(Timestamp i){
+        timestamp=i;
+    }
+
     /**
      *
      * @param i

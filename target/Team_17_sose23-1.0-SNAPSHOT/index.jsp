@@ -24,10 +24,6 @@
             padding: 10px;
             border-radius: 5px;
         }
-        .ticket-prices h2 {
-            margin-top: 0;
-            margin-bottom: 10px;
-        }
     </style>
 </head>
 <body>
