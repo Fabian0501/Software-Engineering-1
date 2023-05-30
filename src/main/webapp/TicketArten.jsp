@@ -42,7 +42,6 @@
         <label for="TicketID">Mit Ticket-ID einfahren:</label>
         <input type="TicketID" id="TicketID" name="TicketID" value="">
         <input type="submit" value="Einfahren!">
-
     </form>
 </div>
 

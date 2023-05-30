@@ -43,7 +43,7 @@
     }
 
     Parkhaus parkhaus = (Parkhaus) context.getAttribute("parkhaus");
-    String sw = parkhaus.getParkhausUhr() +"";
+    String s = parkhaus.getParkhausUhr() +"";
 
 
 %>
@@ -101,7 +101,7 @@
                     id="party"
                     type="datetime-local"
                     name="partydate"
-                    value= "<%= sw %>" />
+                    value= "<%= s %>" />
         </div>
         <div>
             <button type="submit" name="button1"> Timewarp</button>
