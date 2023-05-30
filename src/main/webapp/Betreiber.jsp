@@ -75,7 +75,7 @@
         </form>
     </div>
     <div class="button-div">
-        <form action="Oeffnungszeiten-Servlet" method="post">
+        <form action="Oeffnungszeiten-Servlet" method="get">
             <button type="submit"> Öffnungszeiten festlegen</button>
         </form>
     </div>
