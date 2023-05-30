@@ -80,6 +80,31 @@
         </form>
     </div>
 </div>
+<div class="button-container">
+    <form action="ZeitHandling-Servlet" methode="get">
+        <div>
+            <label for="party">:</label>
+            <input
+                    id="party"
+                    type="datetime-local"
+                    name="partydate"
+                    value="2017-06-01T08:30" />
+        </div>
+        <div>
+            <button type="submit" name="button1"> Timewarp</button>
+        </div>
+        <div>
+            <button type="submit" name="button2"> +5 Minuten</button>
+        </div>
+        <div>
+            <button type="submit" name="button3"> +10 Minuten</button>
+        </div>
+        <div>
+            <button type="submit" name="button4"> +1 Stunde</button>
+        </div>
+    </form>
+</div>
+<div>
     <br>
     <form action="index.jsp">
         <button type="submit"> Parkhaus Startseite</button>

@@ -12,6 +12,7 @@ public class Parkhaus implements ParkhausIF{
     private HashMap<String, String> Zeiten = new HashMap<>();
     private double[] ticketpreise = {1.50,4.00,50.0};
     //Normal,Mit Ladestation(als Zusatz addieren) NICHT der Preis pro Stunde,Monat
+
     @Override
     public Parkticket ticketZiehen() throws IllegalStateException {
         if (getVerfügbareParkplätze() == 0){
@@ -98,6 +99,10 @@ public class Parkhaus implements ParkhausIF{
             throw new IllegalArgumentException();
         }
         ticketpreise[i] = preis; //i ist die Ticketart
+    }
+
+    public void incparkhausUhr(long x){
+        parkhausUhr.setTime(parkhausUhr.getTime()+x);
     }
 
 }
