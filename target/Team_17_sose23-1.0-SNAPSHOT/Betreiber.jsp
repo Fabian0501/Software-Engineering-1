@@ -1,4 +1,9 @@
-
+<%@ page import="Parkhauspackege.Parkhaus" %>
+<%@ page import="Parkhauspackege.Parkticket" %>
+<%@ page import="java.sql.Timestamp" %>
+<%@ page import="java.sql.DatabaseMetaData" %>
+<%@ page import="java.sql.Date" %>
+<%@ page import="java.time.LocalDate"%>
 <%--
   Created by IntelliJ IDEA.
   User: fabia
@@ -35,6 +40,17 @@
     </style>
 
 </head>
+<%
+    ServletContext context = config.getServletContext();
+    if (context.getAttribute("parkhaus") == null) {
+        context.setAttribute("parkhaus", new Parkhaus());
+    }
+
+    Parkhaus parkhaus = (Parkhaus) context.getAttribute("parkhaus");
+    Timestamp parkhausTime = parkhaus.getParkhausUhr();
+    LocalDate now = parkhausTime.toLocalDateTime().toLocalDate();
+    String nowS = now.getDayOfMonth()+"-"+now.getMonth()+"-"+now.getYear()+"T"+parkhausTime.getHours()+":"+parkhausTime.getMinutes();
+%>
 <body>
     <div style="display: flex; justify-content: center;">
         <h1><%= "Willkommen Betreiber!" %></h1>
@@ -83,12 +99,12 @@
 <div class="button-container">
     <form action="ZeitHandling-Servlet" methode="get">
         <div>
-            <label for="party">:</label>
+            <label for="party">Current Date</label>
             <input
                     id="party"
-                    type="datetime-local"
+                    type="party"
                     name="partydate"
-                    value="2017-06-01T08:30" />
+                    value="<%=nowS%>" />
         </div>
         <div>
             <button type="submit" name="button1"> Timewarp</button>
