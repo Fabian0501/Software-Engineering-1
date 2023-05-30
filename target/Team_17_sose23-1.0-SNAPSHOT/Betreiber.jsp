@@ -7,6 +7,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="Parkhauspackege.Parkhaus" %>
+<%@ page import="Parkhauspackege.Parkticket" %>
+
 <html>
 <head>
     <title>Betreiber</title>
@@ -33,7 +36,17 @@
             margin: 20px; /* Hinzufügen von seitlichem Abstand zwischen den Formularen */
         }
     </style>
+<%
+    ServletContext context = config.getServletContext();
+    if (context.getAttribute("parkhaus") == null) {
+        context.setAttribute("parkhaus", new Parkhaus());
+    }
 
+    Parkhaus parkhaus = (Parkhaus) context.getAttribute("parkhaus");
+    String sw = parkhaus.getParkhausUhr() +"";
+
+
+%>
 </head>
 <body>
     <div style="display: flex; justify-content: center;">
@@ -88,7 +101,7 @@
                     id="party"
                     type="datetime-local"
                     name="partydate"
-                    value="2017-06-01T08:30" />
+                    value= "<%= sw %>" />
         </div>
         <div>
             <button type="submit" name="button1"> Timewarp</button>
