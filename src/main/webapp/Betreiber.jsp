@@ -1,4 +1,3 @@
-
 <%--
   Created by IntelliJ IDEA.
   User: fabia
@@ -31,104 +30,93 @@
         .button-container {
             display: flex;
             justify-content: center;
+            align-items: center; /* Zentriert die Elemente horizontal und vertikal */
+            flex-wrap: wrap; /* Elemente bei Bedarf umbrechen */
+            gap: 20px; /* Abstand zwischen den Elementen */
         }
         .button-container form {
-            margin: 20px; /* Hinzufügen von seitlichem Abstand zwischen den Formularen */
+            flex: 1 1 auto; /* Elemente gleichmäßig verteilen */
+        }
+        .button-container .time-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
         }
     </style>
-<%
-    ServletContext context = config.getServletContext();
-    if (context.getAttribute("parkhaus") == null) {
-        context.setAttribute("parkhaus", new Parkhaus());
-    }
+    <%
+        ServletContext context = config.getServletContext();
+        if (context.getAttribute("parkhaus") == null) {
+            context.setAttribute("parkhaus", new Parkhaus());
+        }
 
-    Parkhaus parkhaus = (Parkhaus) context.getAttribute("parkhaus");
-    String s = parkhaus.getParkhausUhr() +"";
-
-
-%>
+        Parkhaus parkhaus = (Parkhaus) context.getAttribute("parkhaus");
+        String s = parkhaus.getParkhausUhr() + "";
+    %>
 </head>
 <body>
-    <div style="display: flex; justify-content: center;">
-        <h1><%= "Willkommen Betreiber!" %></h1>
-    </div>
-    <br>
-    <div style="display: flex; justify-content: center;">
-        <h1><%= "Wählen sie ihre gewünschte Funktion aus" %></h1>
-    </div>
-    <br>
-    <div style="display: flex; justify-content: center;">
-        <h3><%= "Wählen sie die Art des Tickets, dessen Preis geändert werden soll" %></h3>
-    </div>
-    <div class="button-container">
-        <br>
-        <div class="button-div">
-            <form action="setTicketPreis" method="get">
-                <input type="submit" name="Button1" value="        Ticket        ">
-            </form>
-        </div>
+<div style="display: flex; justify-content: center;">
+    <h1><%= "Willkommen Betreiber!" %></h1>
+</div>
+<br>
+<div style="display: flex; justify-content: center;">
+    <h1><%= "Wählen Sie Ihre gewünschte Funktion aus" %></h1>
+</div>
+<br>
+<div style="display: flex; justify-content: center;">
+    <h3><%= "Wählen Sie die Art des Tickets, dessen Preis geändert werden soll" %></h3>
+</div>
+<div class="button-container">
     <div class="button-div">
         <form action="setTicketPreis" method="get">
-            <input type="submit" name="Button2" value="       E-Ticket       ">
+            <input type="submit" name="Button1" value="Ticket">
         </form>
     </div>
     <div class="button-div">
         <form action="setTicketPreis" method="get">
-            <input type="submit" name="Button3" value="    MonatsTicket    ">
+            <input type="submit" name="Button2" value="E-Ticket">
+        </form>
+    </div>
+    <div class="button-div">
+        <form action="setTicketPreis" method="get">
+            <input type="submit" name="Button3" value="Monatsticket">
         </form>
     </div>
 </div>
-<br>
 <br>
 <br>
 <div class="button-container">
     <div class="button-div">
         <form action="Einnahmen-Servlet" method="get">
-            <button type="submit"> Einnahmen</button>
+            <button type="submit">Einnahmen</button>
         </form>
     </div>
     <div class="button-div">
         <form action="Oeffnungszeiten-Servlet" method="get">
-            <button type="submit"> Öffnungszeiten festlegen</button>
+            <button type="submit">Öffnungszeiten festlegen</button>
         </form>
     </div>
 </div>
 <div class="button-container">
     <form action="ZeitHandling-Servlet" method="get">
-        <div>
-            <label for="party">:</label>
+        <div class="time-buttons">
             <input
                     id="party"
                     type="datetime-local"
                     name="partydate"
-                    value= "<%= s %>" />
-        </div>
-        <div>
-            <form action="ZeitHandling-Servlet" method="get">
-            <button type="submit" name="button1"> Timewarp</button>
-            </form>
-        </div>
-        <div>
-            <form action="ZeitHandling-Servlet" method="get">
-            <button type="submit" name="button2"> +5 Minuten</button>
-                </form>
-        </div>
-        <div>
-            <form action="ZeitHandling-Servlet" method="get">
-            <button type="submit" name="button3"> +10 Minuten</button>
-            </form>
-        </div>
-        <div>
-            <form action="ZeitHandling-Servlet" method="get">
-            <button type="submit" name="button4"> +1 Stunde</button>
-                </form>
+                    value="<%= s %>"
+            />
+            <button type="submit" name="button1">Timewarp</button>
+            <button type="submit" name="button2">+5 Minuten</button>
+            <button type="submit" name="button3">+10 Minuten</button>
+            <button type="submit" name="button4">+1 Stunde</button>
         </div>
     </form>
 </div>
 <div>
     <br>
     <form action="index.jsp">
-        <button type="submit"> Parkhaus Startseite</button>
+        <button type="submit">Parkhaus Startseite</button>
     </form>
 </div>
 </body>
