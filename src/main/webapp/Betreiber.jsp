@@ -94,7 +94,7 @@
     </div>
 </div>
 <div class="button-container">
-    <form action="ZeitHandling-Servlet" methode="get">
+    <form action="ZeitHandling-Servlet" method="get">
         <div>
             <label for="party">:</label>
             <input
@@ -104,16 +104,24 @@
                     value= "<%= s %>" />
         </div>
         <div>
+            <form action="ZeitHandling-Servlet" method="get">
             <button type="submit" name="button1"> Timewarp</button>
+            </form>
         </div>
         <div>
+            <form action="ZeitHandling-Servlet" method="get">
             <button type="submit" name="button2"> +5 Minuten</button>
+                </form>
         </div>
         <div>
+            <form action="ZeitHandling-Servlet" method="get">
             <button type="submit" name="button3"> +10 Minuten</button>
+            </form>
         </div>
         <div>
+            <form action="ZeitHandling-Servlet" method="get">
             <button type="submit" name="button4"> +1 Stunde</button>
+                </form>
         </div>
     </form>
 </div>

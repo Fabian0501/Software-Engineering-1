@@ -5,7 +5,7 @@ import java.util.HashMap;
 public class Parkhaus implements ParkhausIF{
 
     private int verfügbareParkplätze = 1000;
-    private static Timestamp parkhausUhr = new Timestamp(System.currentTimeMillis());
+    private Timestamp parkhausUhr = new Timestamp(System.currentTimeMillis());
 
     private HashMap<Integer, Parkticket> speicher = new HashMap<>(); // speichere hier die tickest ab
     private HashMap<Integer, Parkticket> SpeicherRausgefahren = new HashMap<>();  //Hier werden die rausgefahrenen Autos vermekt um eine Einnahmeliste zu bilden
@@ -105,4 +105,7 @@ public class Parkhaus implements ParkhausIF{
         parkhausUhr.setTime(parkhausUhr.getTime()+x);
     }
 
+    public void setParkhausUhr(Timestamp x) {
+        parkhausUhr = x;
+    }
 }
