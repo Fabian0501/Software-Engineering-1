@@ -1,5 +1,6 @@
 <%@ page import="Parkhauspackege.Parkhaus" %>
 <%@ page import="Parkhauspackege.Parkticket" %>
+<%@ page import="java.util.HashMap" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
