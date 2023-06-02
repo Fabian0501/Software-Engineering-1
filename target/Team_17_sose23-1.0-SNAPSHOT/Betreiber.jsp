@@ -9,6 +9,8 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="Parkhauspackege.Parkhaus" %>
 <%@ page import="Parkhauspackege.Parkticket" %>
+<%@ page import="java.lang.IllegalArgumentException" %>
+<%@ page import="java.sql.Timestamp" %>
 
 <html>
 <head>
@@ -94,14 +96,16 @@
     </div>
 </div>
 <div class="button-container">
+    <fieldset>
+        <legend>Timewarp</legend>
     <form action="ZeitHandling-Servlet" method="get">
         <div>
-            <label for="party">:</label>
+            <label for="party"></label>
             <input
                     id="party"
                     type="datetime-local"
                     name="partydate"
-                    value= "<%= s %>" />
+                    value="<%= s %>" />
         </div>
         <div>
             <form action="ZeitHandling-Servlet" method="get">
@@ -124,6 +128,7 @@
                 </form>
         </div>
     </form>
+    </fieldset>
 </div>
 <div>
     <br>
