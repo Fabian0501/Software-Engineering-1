@@ -82,6 +82,22 @@
         <button type="submit">Ausfahren</button>
     </form>
 </div>
-    <a href="betreiberZugriff" class="login-button">Login</a>
+
+    <%
+        if (context.getAttribute("isLoggedIn") == null) { // der Betreiber ist nicht angemeldet
+    %>      <form action="betreiberZugriff" method="get">
+                <button class="login-button" style="background-color: #ffaf37;">Nicht angemeldet</button>
+            </form>
+    <%
+        } else if ((int) context.getAttribute("isLoggedIn") == 1){ // Betreiber ist angemeldet
+    %>      <form action="Betreiber.jsp">
+                <button class="login-button" style="background-color: #30e130;">Angemeldet</button>
+            </form>
+    <%
+        } else if  ((int) context.getAttribute("isLoggedIn") == -1){ // User hat wiederholt falsches passwort eingegeben => anmeldesperre
+    %>       <button class="login-button" style="background-color: #fc2020;">Anmeldung Fehlgeschlagen</button>
+
+    <% } %>
+<%--    <a href="betreiberZugriff" class="login-button" style="background-color: aqua">Login</a>--%>
 </body>
 </html>
