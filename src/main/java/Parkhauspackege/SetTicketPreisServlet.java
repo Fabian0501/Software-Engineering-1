@@ -62,7 +62,8 @@ public class SetTicketPreisServlet extends HttpServlet {
                 parkhaus.setTicketpreise(0,newTicketPreis);
             }
             if (req.getParameter("Button2") != null){
-                parkhaus.setTicketpreise(1,newTicketPreis);            }
+                parkhaus.setTicketpreise(1,newTicketPreis);
+            }
             if (req.getParameter("Button3") != null){ //muss aich eine if anweisung sein, sonst springt er nach einem der ersten beiden abfragen auch hier rein und ändern somit 2 preise auf einmal
                 parkhaus.setTicketpreise(2,newTicketPreis);
             }
