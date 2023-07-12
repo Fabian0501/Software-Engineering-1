@@ -53,7 +53,7 @@
         Normales Ticket + Ladestation: Ein normales Ticket wird ausgestellt mit zusätzlicher Berechtigung für die Ladestation.
     </p>
     <p>
-        Monatskarte: Ein fester Betrag, die Ladestation ist kostenlos.
+        Monatskarte: Ein fester Betrag, die Ladestation ist kostAenlos.
     </p>
     <p>
         Info: An jedem Parkplatz befindet sich eine Ladestation für E-Autos.

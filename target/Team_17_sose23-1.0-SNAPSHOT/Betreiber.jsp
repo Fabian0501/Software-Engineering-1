@@ -43,6 +43,15 @@
             align-items: center;
             gap: 10px;
         }
+        .logout-button{
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 5%; /* Breite des Buttons innerhalb des Div-Elements */
+            height: 5%; /* Höhe des Buttons innerhalb des Div-Elements */
+            font-size: 15px; /* Schriftgröße des Buttons */
+            background-color: #ffaf37;
+        }
     </style>
     <%
         ServletContext context = config.getServletContext();
@@ -119,5 +128,9 @@
         <button type="submit">Parkhaus Startseite</button>
     </form>
 </div>
+<form action="betreiberZugriff">
+    <input class="logout-button" type="submit" name="logout" value="logout">
+</form>
+
 </body>
 </html>
