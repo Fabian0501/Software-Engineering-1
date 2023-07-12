@@ -105,7 +105,7 @@ public class Parkticket  {
         endpreis+=preis;
 
         if(getTicketart().equals("Normales Ticket + Ladestation")){ //der zusatzbetrag wird hier mit einem fixen wert berechent
-            endpreis *= 1.2;
+            endpreis += 4.0;
         }
         DecimalFormat decimalFormat = new DecimalFormat("#.##");
         endpreis = Double.parseDouble(decimalFormat.format(endpreis).replace(",","."));// hier werdne nur zwei stellen nach dme komma betrachtet,
