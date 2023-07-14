@@ -53,7 +53,7 @@ public class KasseServlet extends HttpServlet {
         double endpreis = 0;
         String parkdauer = null;
         String timestmp = ticket.getTimeStamp();
-        Timestamp current = parkhaus.getParkhausUhr();
+        Timestamp current = new Timestamp(System.currentTimeMillis());
         Date now = new Date(current.getTime());
         String ausfahrtszeit = now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
         if (ticket.getTicketart().equals("Normales Ticket")||ticket.getTicketart().equals("Normales Ticket + Ladestation")) {
