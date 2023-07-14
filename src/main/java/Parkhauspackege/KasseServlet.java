@@ -80,7 +80,4 @@ public class KasseServlet extends HttpServlet {
         parkhaus.bezahlen(ticket);
     }
 
-    public void destroy() {
-
-    }
 }

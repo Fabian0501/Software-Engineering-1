@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Timestamp;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.util.HashMap;
@@ -19,7 +20,7 @@ import java.util.Map;
 public class TicketZiehenServlet extends HttpServlet {
     HashMap<String, String[]> openingHours;
     @Override
-    public void init() throws ServletException {
+    public void init() throws ServletException{
         //Folgendes ist die Initialisierung der Öffnungszeiten
         //Konnte leider nicht in OeffnungszeitenServlet durchgeführt werden, da diese Daten auch hier benötigt werden
         //muss in beiden Servlet auf "== null"geprüft und durchgeführt werden.
@@ -92,7 +93,7 @@ public class TicketZiehenServlet extends HttpServlet {
             if (request.getParameter("Button2") != null) { //Normales Ticket + Ladestationberechtigung
                 Parkticket parkticket = parkhaus.ticketZiehen();
                 parkticket.setTicketart(1);
-                parkticket.setTimestamp(parkhaus.getParkhausUhr());
+                parkticket.setTimestamp(new Timestamp(System.currentTimeMillis()));
                 parkticket.setPreis(parkhaus.getTicketPreis()[1]);//Setzt den Preis für Normales Ticket+Ladestation
                 request.getServletContext().setAttribute("ticket", parkticket);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
@@ -101,7 +102,7 @@ public class TicketZiehenServlet extends HttpServlet {
             } else if (request.getParameter("Button3") != null) { //Monatsticket
                 Parkticket parkticket = parkhaus.ticketZiehen();
                 parkticket.setTicketart(2);
-                parkticket.setTimestamp(parkhaus.getParkhausUhr());
+                parkticket.setTimestamp(new Timestamp(System.currentTimeMillis()));
                 parkticket.setPreis(parkhaus.getTicketPreis()[2]); //Setzt den Preis für Monatsticket
                 request.getServletContext().setAttribute("ticket", parkticket);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
@@ -111,7 +112,7 @@ public class TicketZiehenServlet extends HttpServlet {
             } else if (request.getParameter("Button1") != null) {
                 Parkticket parkticket = parkhaus.ticketZiehen();
                 parkticket.setTicketart(0);
-                parkticket.setTimestamp(parkhaus.getParkhausUhr());
+                parkticket.setTimestamp(new Timestamp(System.currentTimeMillis()));
                 parkticket.setPreis(parkhaus.getTicketPreis()[0]); //Setzt den Preis für normales Ticket
                 request.getServletContext().setAttribute("ticket", parkticket);
                 RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
